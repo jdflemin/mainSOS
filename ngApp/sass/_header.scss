@@ -1,0 +1,74 @@
+.bar{
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+#topBar .menu{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+#topBar .searchButton {
+  border: 0px;
+  background-color: #797878;
+  margin-top: 7px;
+}
+
+
+#topBar li:nth-child(1) {
+  cursor: pointer;
+  text-align: left;
+  width: calc(100%/12);
+}
+
+#topBar li:nth-child(2){
+  text-align: left;
+  width: calc(100%/10);
+  height: 40px;
+}
+
+#topBar li .ccLogo {
+  width: 100px;
+  height: 40px;
+}
+
+#topBar li .ssLogo {
+  width: 250px;
+  height: 40px;
+}
+
+#topBar li:nth-child(3) {
+  text-align: center;
+  height: 40px;
+  width: calc(100%/6);
+}
+
+#topBar li .search {
+  width: 100%;
+}
+
+#topBar li:nth-child(4) {
+  color: #CCCCCC;
+  text-align: left;
+  width: calc(100%/9);
+}
+
+#topBar li:nth-child(5){
+  text-align: left;
+  width: calc(100%/8);
+}
+
+#topBar li:nth-child(6){
+  align-items: right;
+  width: calc(100%/8);
+}

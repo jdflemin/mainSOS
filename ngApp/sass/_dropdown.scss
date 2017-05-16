@@ -1,0 +1,45 @@
+#dropDownContents {
+  position: fixed;
+  z-index: 10000;
+  display: inline-flex;
+  top: 64px;
+  padding: 0;
+  margin: 0;
+  display: none;
+  background-color: #717171;
+  width: calc(100%/8);
+  height: 100%
+}
+
+#courses {
+    margin-top: calc(100%/8);
+    padding: 0px;
+    list-style-type: none;
+    color: black;
+}
+
+.dropdown{
+  width: calc(100%/5);
+  padding-bottom: calc(100%/80);
+}
+
+.dropdownitem {
+  height: calc(100%/15);
+  width: calc(100%*4);
+  position: relative;
+}
+.rounded {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  padding-left: calc(100%/5);
+}
+.roundeditem {
+  z-index: 100;
+  position: absolute;
+  color: black;
+  font-size: 1.25em;
+  font-weight: bold;
+  left: calc(100%/2.25);
+  top: 13px;
+}

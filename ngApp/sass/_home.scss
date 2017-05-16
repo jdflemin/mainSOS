@@ -1,0 +1,31 @@
+.liste:hover{
+  font-size: 1.25em;
+}
+
+.liste{
+  width: calc(100%/5);
+  display: inline-flex;
+  margin: calc(100%/75);
+  padding-bottom: calc(100%/80);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.image {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+}
+.text {
+  z-index: 100;
+  position: absolute;
+  color: black;
+  font-size: 100%;
+  font-weight: bold;
+  left: calc(100%/4);
+  top: calc(100%/4);
+}
