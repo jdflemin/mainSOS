@@ -1,7 +1,7 @@
 namespace mainsos.Service {
 
   class TestService {
-    private TEST_RESOURCE =  this.$resource('app.listen(process.env.TESTPORT)')
+    private TEST_RESOURCE =  this.$resource(process.env.TESTPORT);
 
     constructor(private $resource){}
 
