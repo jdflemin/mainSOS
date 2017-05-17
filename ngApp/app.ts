@@ -31,6 +31,12 @@ namespace mainsos {
                 controller: mainsos.Controllers.AnswersController,
                 controllerAs: 'controller'
             })
+            .state('test', {
+                url: '/test',
+                templateUrl: '/ngApp/views/test.html',
+                controller: mainsos.Controllers.TestController,//needs to be deleted
+                controllerAs: 'controller'
+            })
             .state('notFound', {
                 url: '/notFound',
                 templateUrl: '/ngApp/views/notFound.html'
