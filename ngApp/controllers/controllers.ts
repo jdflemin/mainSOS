@@ -1,13 +1,23 @@
 namespace mainsos.Controllers {
 
     export class HomeController {
-        public message = 'Hello from the home page!';
+      public message = 'Hello from the home page!';
     }
 
 
     export class AboutController {
         public message = 'Hello from the about page!';
     }
+
+
+
+    export class TestController{
+    public weightclasses;
+
+    constructor(testService){
+      this.weightclasses = testService.getAll()
+    }
+  }
 
 }
 
