@@ -9,3 +9,9 @@ $(function(){                   //SHOULD THIS BE MOVED TO A CONTROLLER?
     $('.discussionContainer').slideToggle(500)
   })
 })
+
+$(function(){
+  $('.dropdown').click(function(){
+    $('#dropDownContents').slideToggle(500)
+  })
+})

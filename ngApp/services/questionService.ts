@@ -40,7 +40,7 @@ namespace mainsos.Services{
 
   }
 
-  angular.module('SOS').service('questionService', QuestionService);
+  angular.module('mainsos').service('questionService', QuestionService);
 }
 
 }

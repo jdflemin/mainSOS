@@ -31,5 +31,5 @@ namespace mainsos.Services {
       }
     }
 
-    angular.module('SOS').service('lessonServices', LessonServices);
+    angular.module('mainsos').service('lessonServices', LessonServices);
 }

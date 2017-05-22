@@ -34,6 +34,6 @@ export class CommentService {
 
 }
 
-angular.module('SOS').service('commentService', CommentService);
+angular.module('mainsos').service('commentService', CommentService);
 
 }
