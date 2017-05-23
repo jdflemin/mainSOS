@@ -7,6 +7,7 @@
 <div>
   <ul class="homeUL">
     <li class="liste" ng-repeat="course in controller.courses"><div class="container">
+      <i class="fa fa-trash fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.delete(course)"></i>
       <img class="image" src="/hex.png" />
       <h6 class="text">
         <a href="/lessons/{{course.id}}" class="idLink">
@@ -16,3 +17,8 @@
     </div></li>
   </ul>
 </div>
+
+<form>
+  <input type="text" ng-model="controller.newCourse.name">
+  <button type="button" name="button" ng-click="controller.addCourse()">add</button>
+</form>
