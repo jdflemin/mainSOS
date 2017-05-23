@@ -14,7 +14,7 @@ namespace mainsos {
                 controllerAs: 'controller'
             })
             .state('lessons', {
-                url: '/lessons',
+                url: '/lessons/:id',
                 templateUrl: '/ngApp/views/lessons.html',
                 controller: mainsos.Controllers.LessonsController,
                 controllerAs: 'controller'
