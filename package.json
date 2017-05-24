@@ -31,5 +31,17 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0"
-  }
+  },
+  "description": "Please run the following commands in the command line after cloning",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdflemin/mainSOS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdflemin/mainSOS/issues"
+  },
+  "homepage": "https://github.com/jdflemin/mainSOS#readme"
 }

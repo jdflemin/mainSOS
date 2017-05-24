@@ -76,5 +76,9 @@ namespace sos.Controllers{
       this.commentService.update(comment);
     }
 
+    public editComment(commentID) {
+
+    }
+
   }
 }
