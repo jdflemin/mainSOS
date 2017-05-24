@@ -22,7 +22,7 @@ namespace mainsos.Controllers {
     }
 
     public listQuestions() {
-      this.question = this.questionService.getAllbyLesson(this.lesson._id);
+      this.question = this.questionService.getAllByLesson(this.lesson._id);
     }
 
 
