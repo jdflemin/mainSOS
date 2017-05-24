@@ -5,6 +5,7 @@ import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as ejs from 'ejs';
+require('dotenv').config({silent: true});
 
 import routes from './routes/index';
 import users from './routes/users';

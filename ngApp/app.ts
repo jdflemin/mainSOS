@@ -13,6 +13,7 @@ namespace mainsos {
                 controller: mainsos.Controllers.HomeController,
                 controllerAs: 'controller'
             })
+
             .state('admin', {
                 url: '/admin',
                 templateUrl: '/ngApp/views/admin.html',
@@ -25,6 +26,12 @@ namespace mainsos {
                 controller: mainsos.Controllers.LanguagesController,
                 controllerAs: 'controller'
             })
+           .state('lessons', {
+                url: '/lessons',
+                templateUrl: '/ngApp/views/lessons.html',
+                controller: mainsos.Controllers.LessonsController,
+                controllerAs: 'controller'
+            })
             .state('questions', {
                 url: '/questions',
                 templateUrl: '/ngApp/views/questions.html',
@@ -35,6 +42,12 @@ namespace mainsos {
                 url: '/answers',
                 templateUrl: '/ngApp/views/answers.html',
                 controller: mainsos.Controllers.AnswersController,
+                controllerAs: 'controller'
+            })
+            .state('test', {
+                url: '/test',
+                templateUrl: '/ngApp/views/test.html',
+                controller: mainsos.Controllers.TestController,//needs to be deleted
                 controllerAs: 'controller'
             })
             .state('notFound', {
