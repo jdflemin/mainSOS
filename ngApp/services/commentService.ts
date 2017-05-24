@@ -15,16 +15,16 @@ export class CommentService {
     return this.COMMENT_RESOURCES.get({id: Id});
   }
 
-  public getAllbyQuestion(QuestionID) {
+  public getAllbyAnswer(QuestionID) {
     return this.ANSWER_COMMENT_RESOURCES.query({id: QuestionID});
   }
 
-  public add(answer) {
-    return this.CRUD_COMMENT_RESOURCE.save(answer).$promise;
+  public add(comment) {
+    return this.CRUD_COMMENT_RESOURCE.save(comment).$promise;
   }
 
-  public update(answer) {
-    return this.CRUD_COMMENT_RESOURCE.save({id: answer._id}, answer).$promise;
+  public update(comment) {
+    return this.CRUD_COMMENT_RESOURCE.save({id: comment._id}, comment).$promise;
   }
 
   public delete(Id) {
