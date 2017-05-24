@@ -1,17 +1,28 @@
 namespace mainsos.Controllers {
 
   export class QuestionController {
+    private Lesson;
     public questions;
     public question;
     public newQuestion = {
       qTitle: '',
       qContent: '',
-      qDate: '',
+      qDate: Date.now(),
+      lessonID: this.Lesson._id,
+      userId: '',
       clickCount: 0
     }
 
-    constructor(private questionService, private $state) {
-      this.questions = this.questionService.query();
+    constructor(private questionService, private lessonServices, private $state, private $stateParams) {
+      lessonServices.getOne($state.params.id)
+        .then((data) => {
+          this.Lesson = data;
+          this.listQuestions();
+        });
+    }
+
+    public listQuestions() {
+      this.question = this.questionService.getAllbyQuestion(this.Lesson._id);
     }
 
     public getAllbyQuestion(lessonID) {
@@ -29,7 +40,7 @@ namespace mainsos.Controllers {
       .then((data) => {
         this.newQuestion.qTitle = '';
         this.newQuestion.qContent = '';
-        this.newQuestion.qDate = ''; //add by newQuestion
+        this.newQuestion.qDate = Date.now(); //add by newQuestion
         this.newQuestion.clickCount = 0;
         this.questions.push(data);
       })
