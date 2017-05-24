@@ -1,14 +1,14 @@
 namespace mainsos.Controllers {
 
   export class QuestionController {
-    private Lesson;
+    private lesson;
     public questions;
     public question;
     public newQuestion = {
       qTitle: '',
       qContent: '',
       qDate: Date.now(),
-      lessonID: this.Lesson._id,
+      lessonID: this.lesson._id,
       userId: '',
       clickCount: 0
     }
@@ -16,19 +16,15 @@ namespace mainsos.Controllers {
     constructor(private questionService, private lessonServices, private $state, private $stateParams) {
       lessonServices.getOne($state.params.id)
         .then((data) => {
-          this.Lesson = data;
+          this.lesson = data;
           this.listQuestions();
         });
     }
 
     public listQuestions() {
-      this.question = this.questionService.getAllbyQuestion(this.Lesson._id);
+      this.question = this.questionService.getAllbyLesson(this.lesson._id);
     }
 
-    public getAllbyQuestion(lessonID) {
-      console.log(lessonID);
-      this.$state.go('questions', {id: lessonID});
-    }
 
     public goToAnswer(question) {
       console.log(this.question._id);
@@ -36,22 +32,21 @@ namespace mainsos.Controllers {
     }
 
     public add(question) {
-      this.question = this.questionService.add({qTitle: this.newQuestion.qTitle, qContent: this.newQuestion.qContent, qDate: this.newQuestion.qDate, clickCount: this.newQuestion.clickCount})
-      .then((data) => {
         this.newQuestion.qTitle = '';
         this.newQuestion.qContent = '';
-        this.newQuestion.qDate = Date.now(); //add by newQuestion
-        this.newQuestion.clickCount = 0;
-        this.questions.push(data);
-      })
+        this.newQuestion.qDate = Date.now();
+        this.questionService.add(this.newQuestion);
+        this.listQuestions();
+      }
+
+    public questionClickCount(questionId) {
+      let clickQuestion = this.questionService.getOne(questionId);
+      clickQuestion.clickCount++;
+      this.updateQuestion(clickQuestion);
     }
 
-    public update(question){
-      this.question = this.questionService.get(question._id); //need to send back the whole question
-    }
-
-    public save() {
-      this.questionService.update(this.question._id);
+    public updateQuestion(question) {
+      this.questionService.update(question);
     }
 
     public delete(Id) {
