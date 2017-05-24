@@ -1,9 +1,9 @@
 namespace mainsos.Service {
 
   class TestService {
-    private TEST_RESOURCE =  this.$resource('http://localhost:8080/api/v1/weightclasses/:id');
+    private TEST_RESOURCE =  this.$resource('http://localhost:8080/api/v1/weightclasses');
 
-    constructor(private $resource){}
+    constructor(private $resource, private $http){}
 
     public getAll(){
       return this.TEST_RESOURCE.query();
