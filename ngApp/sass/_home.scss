@@ -1,12 +1,16 @@
-.liste:hover{
-  font-size: 1.25em;
+.liste:hover .text{
+  font-size: 2em;
+  position: relative;
+  text-decoration: none;
 }
 
 .liste{
-  width: calc(100%/5);
   display: inline-flex;
-  margin: calc(100%/75);
-  padding-bottom: calc(100%/80);
+  padding: 10px 5px;;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  float: none;
 }
 
 .container {
@@ -16,16 +20,32 @@
 }
 .image {
   position: relative;
-  height: 100%;
+  height: 300px;
   width: 100%;
+  text-align: center;
 
 }
 .text {
   z-index: 100;
-  position: absolute;
+  position: relative;
   color: black;
-  font-size: 100%;
   font-weight: bold;
-  left: calc(100%/4);
-  top: calc(100%/4);
+  top: -200px;
+  width: 200px;
+  margin: 0 auto;
+  font-size: 1.25em;
+}
+
+.homeUL{
+  text-align: center;
+  padding: 0;
+}
+
+.idLink{
+  text-decoration: none;
+  color: black;
+}
+
+#trashcan{
+  float: right;
 }

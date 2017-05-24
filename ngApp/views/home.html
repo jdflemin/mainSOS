@@ -4,81 +4,19 @@
 <br>
 <br>
 
-
 <div>
   <ul class="homeUL">
-    <li class="liste"><div class="container">
+    <li class="liste" ng-repeat="course in controller.courses"><div class="container">
+      <i class="fa fa-trash fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.delete(course)"></i>
       <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
+      <h6 class="text" ng-click="controller.redirectToLessons(course._id)">
+        {{course.name}}
+      </h6>
     </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-      <p class="text">
-        Front End Foundations
-      </p>
-    </div></li>
-    <li class="liste"><div class="container">
-      <img class="image" src="/hex.png" />
-        <p class="text">
-          Front End Foundations
-        </p>
-      </div></li>
-
   </ul>
 </div>
+
+<form>
+  <input type="text" ng-model="controller.newCourse.name">
+  <button type="button" name="button" ng-click="controller.addCourse()">add</button>
+</form>
