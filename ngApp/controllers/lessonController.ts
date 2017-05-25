@@ -1,16 +1,18 @@
 namespace SOS.Controllers{
 
-  export class GetLessonController {
-    public lesson;
+  export class LessonsController {
+    public lessons;
+    public course;
 
-    static $inject = ['LessonServices', '$state'];
-
-    constructor (private LessonServices, private $state){
-      this.lesson = LessonServices.get();
+    constructor (private courseService, private  lessonServices, private $state){
+      courseService.getOne($state.params.id).then((data) => {
+        this.course = data;
+      })
+      this.listLessons();
     }
 
-    public get(id){
-      this.$state.go('lesson', {id: id});
+    public listLessons(){
+      this.lessons = this.lessonServices.getAllCourseLessons(this.course._id);
     }
   }
 }
