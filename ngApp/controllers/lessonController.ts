@@ -1,4 +1,4 @@
-namespace SOS.Controllers{
+namespace mainsos.Controllers{
 
   export class GetLessonController {
     public lesson;
