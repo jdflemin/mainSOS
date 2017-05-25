@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<br>
+<br>
+<br>
+<br>
+<br>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style>
+      body {
+        background-image: url("https://www.codercamps.com//_images/bg-home-showcase.jpg");
+        background-repeat: repeat;
+      }
+      .button {
+        width:1000px;
+        height:50px;
+        padding:20px;
+        margin:10px;
+        border-radius: 25px;
+        border: 1px solid #ff3738;
+        background-color: gray;
+        color: black;
+        text-align: left;
+        font-family: sans-serif;
+        cursor: pointer;
+        display: inline-table;
+        text-decoration: none;
+      }
+
+
+    </style>
+
+  </head>
+  <body>
+<div style="width: 100%; display: table">
+  <div style="display: table-row" ng-repeat="lesson in controller.lesson">
+      <a href="http://localhost:3004/api/v1/lessons/course/:id/lessons" class="button">
+        {{lesson.courseId}}: {{lesson.title}}
+      </a>
+    </div>
+  </div>
+  </body>
+</html>

@@ -19,7 +19,10 @@
           <li class="menu"><img src="SOSs.png" alt="logo" class="ccLogo"></li>
           <li class="menu"><input type="text" class="search" placeholder="Search..."></li>
           <li class="menu"><button type="button" class="searchButton">Search</button></li>
-          <li class="menu">button</li> <!-- NOTE need if admin and if student-->
+          <li class="menu">
+            <button type="button" name="button">Get Help</button>
+            <button type="button" name="button">Admin</button>
+          </li>
           <li class="menu"><img src="saveourstacks.png" alt="logo" class="ssLogo"></li>
         </ul>
       </div>
@@ -57,8 +60,12 @@
   <script src="/ngApp/UIfunctions/UIfunctions.js"></script>
 
   <script src="/ngApp/app.js"></script>
+
+  <script src="/ngApp/controllers/adminController.js"></script>
   <script src="/ngApp/controllers/homeController.js"></script>
   <script src="/ngApp/controllers/indexController.js"></script>
+  <script src="/ngApp/controllers/lessonController.js"></script>
+  <script src="/ngApp/controllers/questionController.js"></script>
 
   <script src="/ngApp/services/answerService.js"></script>
   <script src="/ngApp/services/commentService.js"></script>
@@ -68,6 +75,7 @@
 
 
   <script src="/ngApp/services/test.js"></script> <!-- NOTE: This line will be deleted, using it to test connectionssss -->
+
 
 </body>
 

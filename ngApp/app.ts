@@ -13,7 +13,19 @@ namespace mainsos {
                 controller: mainsos.Controllers.HomeController,
                 controllerAs: 'controller'
             })
-            .state('lessons', {
+            .state('admin', {
+                url: '/admin',
+                templateUrl: '/ngApp/views/admin.html',
+                controller: mainsos.Controllers.AdminController,
+                controllerAs: 'controller'
+            })
+            .state('languages', {
+                url: '/languages',
+                templateUrl: '/ngApp/views/languages.html',
+                controller: mainsos.Controllers.LanguagesController,
+                controllerAs: 'controller'
+            })
+           .state('lessons', {
                 url: '/lessons',
                 templateUrl: '/ngApp/views/lessons.html',
                 controller: mainsos.Controllers.LessonsController,
