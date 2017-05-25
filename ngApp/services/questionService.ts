@@ -18,7 +18,7 @@ namespace mainsos.Services{
       return this.QUESTION_RESOURCE.get({id: Id});
     }
 
-    public getAllbyQuestion(lessonID) {
+    public getAllByLesson(lessonID) {
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
     }
 
