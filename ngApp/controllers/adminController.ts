@@ -5,8 +5,6 @@ namespace mainsos.Controller {
     private admin; //data? what data is admin need?
     private language;
 
-    static $inject = ['languageService'];
-
     constructor(private languageService) {}
 
     }
