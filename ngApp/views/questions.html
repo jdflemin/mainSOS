@@ -7,10 +7,14 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle">Welcome to Front End Foundations HTML5 Lesson 1</h2>
+      <h2 class="lessonTitle" ng-model="controller.getLessonName(lesson)">{{lesson.name}}</h2>
     </div>
     <div class="questions">
-      <ul class="questionsList">
+      <ul class="questionsList" ng-repeat="question in controller.questions">
+        <li class="question" ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</li>
+        <li class="question">{{question.qDate}}</li>
+        <button class="questionClickCount" ng-click="controller.questionClickCount(questionId)">{{question.clickCount}}</button>
+        <!-- <li class="question">Question 5</li>
         <li class="question">Question 1</li>
         <li class="question">Question 2</li>
         <li class="question">Question 3</li>
@@ -20,21 +24,16 @@
         <li class="question">Question 2</li>
         <li class="question">Question 3</li>
         <li class="question">Question 4</li>
-        <li class="question">Question 5</li>
-        <li class="question">Question 1</li>
-        <li class="question">Question 2</li>
-        <li class="question">Question 3</li>
-        <li class="question">Question 4</li>
-        <li class="question">Question 5</li>
+        <li class="question">Question 5</li> -->
       </ul>
     </div>
   </div>
   <div class="col-md-3">
     <div class="askQuestion">
       <form>
-        <input type="text" class="newQuestionTitle" placeholder="Question Title">
-        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100"></textarea>
-        <button type="button" class="questionButton">Ask</button>
+        <input type="text" class="newQuestionTitle" placeholder="Question Title" ng-model="controller.newQuestion.qTitle">
+        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100" ng-model="controller.newQuestion.qContent"></textarea>
+        <button type="button" class="questionButton" ng-click="controller.add(question)">Ask Question</button>
       </form>
     </div>
   </div>
