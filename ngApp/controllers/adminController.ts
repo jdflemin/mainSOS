@@ -5,9 +5,26 @@ namespace mainsos.Controllers {
     private admin; //data? what data is admin need?
     private language;
 
-    static $inject = ['languageService'];
-
     constructor(private languageService) {}
+
+    public restoreDefaultDisplay(){
+
+    }
+    public restoreDefaultAdd(){
+
+    }
+    public restoreDefaultSearch(){
+
+    }
+    public clearContentDisplay(){
+
+    }
+    public clearContentAdd(){
+
+    }
+    public clearContentSearch(){
+
+    }
 
     }
 

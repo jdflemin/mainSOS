@@ -1,12 +1,12 @@
 namespace mainsos.Controllers{
 
   export class AnswerController{
-    private Question;
-    private Answers;
+    private question;
+    private answers;
     private comments;
     public newAnswer = {
       aDate: Date.now(),
-      questionId: this.Question._id,
+      questionId: this.question._id,
       aContent: "",
       userId: "",  //this to be updated when we see what token will be as it will auto populate with who is logged in
       usefulCount: 0,
@@ -23,13 +23,13 @@ namespace mainsos.Controllers{
 
     constructor(private questionService, private AnswerService, private commentService, private $stateParams){
       questionService.getOne($stateParams.id).then((data) => {
-        this.Question = data;
+        this.question = data;
         this.listAnswers();
       });
     }
 
     private listAnswers() {
-      this.Answers = this.AnswerService.getAllbyQuestion(this.Question._id);
+      this.answers = this.AnswerService.getAllbyQuestion(this.question._id);
     }
 
     private listComments(id) {
@@ -76,9 +76,6 @@ namespace mainsos.Controllers{
       this.commentService.update(comment);
     }
 
-    public editComment(commentID) {
-
-    }
 
   }
 }
