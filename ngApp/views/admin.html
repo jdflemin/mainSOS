@@ -4,21 +4,25 @@
 <br>
 
 <div class= "well well-lg">
-Search Service
+Display Service
 
-<button class="btn btn-default" style="float:right" ng-click="">Restore</button>
-<button class="btn btn-default" style="float:right" ng-click="">Clear Content</button>
-
-<select name="languages" ng-model="controller.language">
-  <option value="JavaScript" ng-model = "controller in languageController">JavaScript</option>
-  <option value="Ruby">Ruby</option>
-  <option value="C#">C#</option>
-  <option value="Java">Java</option>
-</select>
-
+<button class="btn btn-default" style="float:right" ng-click="controller.restoreDefaultDisplay">Restore</button> <!--restore back to default code-->
+<button class="btn btn-default" style="float:right" ng-click="controller.clearContentDiplay">Clear Content</button> <!--clears content for specific microservice-->
 
 </div>
+<br>
+<div class= "well well-lg">
+Add Service
 
-<!-- Does admin need to review before nuking contents?
-Does the admin want to pull all content of language selected
-  onto the admin page to clear content or reset all? -->
+<button class="btn btn-default" style="float:right" ng-click="controller.restoreDefaultAdd">Restore</button>
+<button class="btn btn-default" style="float:right" ng-click="controller.clearContentAdd">Clear Content</button>
+
+</div>
+<br>
+<div class= "well well-lg">
+Search Service
+
+<button class="btn btn-default" style="float:right" ng-click="controller.restoreDefaultService">Restore</button>
+<button class="btn btn-default" style="float:right" ng-click="controller.clearContentServic">Clear Content</button>
+
+</div>

@@ -1,4 +1,4 @@
-namespace mainsos.Controller {
+namespace mainsos.Controllers {
 
   export class AdminController {
 
@@ -7,8 +7,27 @@ namespace mainsos.Controller {
 
     constructor(private languageService) {}
 
+    public restoreDefaultDisplay(){
+
     }
-  }
+    public restoreDefaultAdd(){
+
+    }
+    public restoreDefaultSearch(){
+
+    }
+    public clearContentDisplay(){
+
+    }
+    public clearContentAdd(){
+
+    }
+    public clearContentSearch(){
+
+    }
+
+    }
+
   export class LogoutController {
     constructor(private adminService) {}
 
@@ -16,3 +35,4 @@ namespace mainsos.Controller {
       this.adminService.logout();
     }
   }
+}

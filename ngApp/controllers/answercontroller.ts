@@ -1,4 +1,4 @@
-namespace sos.Controllers{
+namespace mainsos.Controllers{
 
   export class AnswerController{
     private question;
