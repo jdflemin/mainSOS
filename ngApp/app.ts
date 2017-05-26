@@ -13,7 +13,6 @@ namespace mainsos {
                 controller: mainsos.Controllers.HomeController,
                 controllerAs: 'controller'
             })
-
             .state('admin', {
                 url: '/admin',
                 templateUrl: '/ngApp/views/admin.html',

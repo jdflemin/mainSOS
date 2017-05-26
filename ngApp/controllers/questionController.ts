@@ -14,7 +14,7 @@ namespace mainsos.Controllers {
     }
 
     constructor(private questionService, private lessonServices, private $state, private $stateParams) {
-      lessonServices.getOne($state.params.id)
+      this.lessonServices.getOne($state.params.id)
         .then((data) => {
           this.lesson = data;
           this.listQuestions();
@@ -22,11 +22,15 @@ namespace mainsos.Controllers {
     }
 
     public listQuestions() {
-      this.question = this.questionService.getAllByLesson(this.lesson._id);
+      this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
+    public getLessonName(lesson) {
+      console.log(this.lesson._id);
+      this.questions = this.lessonServices.get({name: this.lesson.name});
+    }
 
-    public goToAnswer(question) {
+    public redirectToAnswers(question) {
       console.log(this.question._id);
       this.$state.go('answers', {id: this.question._id});
     }

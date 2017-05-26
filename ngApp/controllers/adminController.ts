@@ -1,4 +1,4 @@
-namespace mainsos.Controller {
+namespace mainsos.Controllers {
 
   export class AdminController {
 
@@ -27,7 +27,7 @@ namespace mainsos.Controller {
     }
 
     }
-  }
+
   export class LogoutController {
     constructor(private adminService) {}
 
@@ -35,3 +35,4 @@ namespace mainsos.Controller {
       this.adminService.logout();
     }
   }
+}
