@@ -7,24 +7,18 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle" ng-model="controller.getLessonName(lesson)">{{lesson.name}}</h2>
+      <h2 class="lessonTitle" ng-show="controller.getQuestionLessonTitle(title)"></h2>
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions">
-        <li class="question" ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</li>
-        <li class="question">{{question.qDate}}</li>
-        <button class="questionClickCount" ng-click="controller.questionClickCount(questionId)">{{question.clickCount}}</button>
-        <!-- <li class="question">Question 5</li>
-        <li class="question">Question 1</li>
-        <li class="question">Question 2</li>
-        <li class="question">Question 3</li>
-        <li class="question">Question 4</li>
-        <li class="question">Question 5</li>
-        <li class="question">Question 1</li>
-        <li class="question">Question 2</li>
-        <li class="question">Question 3</li>
-        <li class="question">Question 4</li>
-        <li class="question">Question 5</li> -->
+        <li class="question" ng-click="controller.redirectToAnswers(question._id)">
+          <span ng-click="controller.questionClickCount(questionId)">
+            <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
+            {{controller.clickCount}}
+          </span>
+          <span>{{question.qTitle}}</span>
+          <span>{{question.qDate}}</span>
+         </li>
       </ul>
     </div>
   </div>

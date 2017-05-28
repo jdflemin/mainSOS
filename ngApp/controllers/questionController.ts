@@ -8,12 +8,13 @@ namespace mainsos.Controllers {
       qTitle: '',
       qContent: '',
       qDate: Date.now(),
-      lessonID: this.lesson._id,
-      userId: '',
       clickCount: 0
     }
 
-    constructor(private questionService, private lessonServices, private $state, private $stateParams) {
+    public lessonID = this.lesson._id;
+    public userId = '';
+
+    constructor(private questionService, private lessonServices, private $state, private $stateParams, public $windows) {
       this.lessonServices.getOne($state.params.id)
         .then((data) => {
           this.lesson = data;
@@ -25,9 +26,8 @@ namespace mainsos.Controllers {
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
-    public getLessonName(lesson) {
-      console.log(this.lesson._id);
-      this.questions = this.lessonServices.get({name: this.lesson.name});
+    public getQuestionLessonTitle(title) {
+      this.lesson = this.questionService.query({title: this.lesson.title});
     }
 
     public redirectToAnswers(question) {
@@ -35,13 +35,15 @@ namespace mainsos.Controllers {
       this.$state.go('answers', {id: this.question._id});
     }
 
-    public add(question) {
-        this.newQuestion.qTitle = '';
-        this.newQuestion.qContent = '';
-        this.newQuestion.qDate = Date.now();
-        this.questionService.add(this.newQuestion);
+    public addQuestions() {
+      this.newQuestion = this.questionService.add({
+        qTitle: this.newQuestion.qTitle,
+        qContent: this.newQuestion.qContent,
+        qDate: this.newQuestion.qDate = Date.now()
+      }).then(() => this.questionService.reShow());
+      console.log(this.newQuestion);
         this.listQuestions();
-      }
+    }
 
     public questionClickCount(questionId) {
       let clickQuestion = this.questionService.getOne(questionId);
@@ -51,6 +53,10 @@ namespace mainsos.Controllers {
 
     public updateQuestion(question) {
       this.questionService.update(question);
+    }
+
+    public open() {
+      this.newQuestion = this.$state.go('answers', {id: this.question._id})
     }
 
     public delete(Id) {
