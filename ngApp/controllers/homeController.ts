@@ -21,6 +21,7 @@ namespace mainsos.Controllers {
           name: this.newCourse.name,
         }).then(() => this.courseServices.reShow());
       }
+      
 
       public redirectToLessons(courseID){
         console.log(courseID)

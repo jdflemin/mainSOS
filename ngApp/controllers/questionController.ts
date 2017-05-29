@@ -1,7 +1,7 @@
 namespace mainsos.Controllers {
 
   export class QuestionController {
-    private lesson;
+    public lesson;
     public questions;
     public question;
     public newQuestion = {
@@ -9,25 +9,21 @@ namespace mainsos.Controllers {
       qContent: '',
       qDate: Date.now(),
       lessonID: this.lesson._id,
-      userId: '',
-      clickCount: 0
-    }
 
-    constructor(private questionService, private lessonServices, private $state, private $stateParams) {
-      this.lessonServices.getOne($state.params.id)
-        .then((data) => {
+    }
+    public clickCount = 0;
+    public userId= '';
+
+
+    constructor(private questionService, private lessonServices, private $state) {
+      this.lessonServices.getOne($state.params.id).then((data) => {
           this.lesson = data;
-          this.listQuestions();
-        });
+        })
+        this.listQuestions();
     }
 
     public listQuestions() {
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
-    }
-
-    public getLessonName(lesson) {
-      console.log(this.lesson._id);
-      this.questions = this.lessonServices.get({name: this.lesson.name});
     }
 
     public redirectToAnswers(question) {
@@ -35,18 +31,14 @@ namespace mainsos.Controllers {
       this.$state.go('answers', {id: this.question._id});
     }
 
-    public add(question) {
-        this.newQuestion.qTitle = '';
-        this.newQuestion.qContent = '';
-        this.newQuestion.qDate = Date.now();
-        this.questionService.add(this.newQuestion);
-        this.listQuestions();
-      }
-
-    public questionClickCount(questionId) {
-      let clickQuestion = this.questionService.getOne(questionId);
-      clickQuestion.clickCount++;
-      this.updateQuestion(clickQuestion);
+    public addQuestions(question) {
+      this.newQuestion = this.questionService.add({
+        lessonID: this.newQuestion.lessonID,
+        qTitle: this.newQuestion.qTitle,
+        qContent: this.newQuestion.qContent,
+        qDate: this.newQuestion.qDate = Date.now()
+      })
+      this.listQuestions();
     }
 
     public updateQuestion(question) {
@@ -59,5 +51,19 @@ namespace mainsos.Controllers {
           this.questions = this.questionService.getAll();
         });
     }
+
+    public questionClickCount(questionId) {
+      let questionUptick = this.questionService.getOne(questionId);
+      questionUptick.clickCount++;
+      this.updateQuestion(questionUptick);
+    }
+
+    // public open() {
+    //   this.newQuestion = this.$state.go('answers', {id: this.question._id});
+    // }
+
+    // public getQuestionLessonTitle(title) {
+    //   this.lesson = this.questionService.query({title: this.lesson._title});
+    // }
   }
 }

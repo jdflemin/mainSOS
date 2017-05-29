@@ -5,8 +5,8 @@ namespace SOS.Controllers{
     public lessons;
     public course;
 
-    constructor (private courseService, private  lessonServices, private $state){
-      courseService.getOne($state.params.id).then((data) => {
+    constructor (private courseServices, private  lessonServices, private $state){
+      courseServices.getOne($state.params.id).then((data) => {
         this.course = data;
       })
       this.listLessons();
