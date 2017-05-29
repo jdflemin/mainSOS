@@ -1,7 +1,7 @@
 namespace mainsos.Controllers {
 
-  export class QuestionController {
-    public lesson;
+  export class QuestionsController {
+    private lesson;
     public questions;
     public question;
     public newQuestion = {
