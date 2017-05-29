@@ -1,6 +1,6 @@
 namespace mainsos.Controllers{
 
-  export class AnswerController{
+  export class AnswersController{
     private question;
     private answers;
     private comments;

@@ -19,12 +19,6 @@ namespace mainsos {
                 controller: mainsos.Controllers.AdminController,
                 controllerAs: 'controller'
             })
-            .state('languages', {
-                url: '/languages',
-                templateUrl: '/ngApp/views/languages.html',
-                controller: mainsos.Controllers.LanguagesController,
-                controllerAs: 'controller'
-            })
            .state('lessons', {
                 url: '/lessons',
                 templateUrl: '/ngApp/views/lessons.html',
@@ -43,6 +37,31 @@ namespace mainsos {
                 controller: mainsos.Controllers.AnswersController,
                 controllerAs: 'controller'
             })
+            .state('adminCourse', {
+                url: '/admincourse',
+                templateUrl: '/ngApp/views/admincourse.html',
+                controller: mainsos.Controllers.AdminCoursesController,
+                controllerAs: 'controller'
+            })
+            .state('adminLessons', {
+                url: '/adminlessons',
+                templateUrl: '/ngApp/views/adminlessons.html',
+                controller: mainsos.Controllers.AdminLessonsController,
+                controllerAs: 'controller'
+            })
+            .state('adminQuestions', {
+                url: '/adminQuesions',
+                templateUrl: '/ngApp/views/adminquestions.html',
+                controller: mainsos.Controllers.AdminQuestionsController,
+                controllerAs: 'controller'
+            })
+            .state('adminAnswers', {
+                url: '/adminanswers',
+                templateUrl: '/ngApp/views/adminanswers.html',
+                controller: mainsos.Controllers.AdminAnswersController,
+                controllerAs: 'controller'
+            })
+
             .state('test', {
                 url: '/test',
                 templateUrl: '/ngApp/views/test.html',
