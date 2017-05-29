@@ -1,7 +1,5 @@
 namespace mainsos.Services{
 
-  namespace SOS.Services {
-
   export class QuestionService {
     private QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/:id');
     private LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lesson/:id/questions');
@@ -14,12 +12,16 @@ namespace mainsos.Services{
       return this.QUESTION_RESOURCE.query();
     }
 
-    public getOne(Id) {
-      return this.QUESTION_RESOURCE.get({id: Id});
+    public getOne(id) {
+      return this.QUESTION_RESOURCE.get({id: id});
     }
 
     public getAllByLesson(lessonID) {
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
+    }
+
+    public getQuestionLessonTitle(lesson) {
+      return this.LESSON_QUESTION_RESOURCE.query({title: lesson._title}, lesson);
     }
 
     public searchAnswerContent(keywords) {
@@ -34,13 +36,11 @@ namespace mainsos.Services{
       return this.CRUD_QUESTION_RESOURCE.save({id: question._id}, question).$promise;
     }
 
-    public delete(Id) {
-      return this.CRUD_QUESTION_RESOURCE.delete({id: Id}).$promise;
+    public delete(id) {
+      return this.CRUD_QUESTION_RESOURCE.delete({id: id}).$promise;
     }
 
   }
 
   angular.module('mainsos').service('questionService', QuestionService);
-}
-
 }

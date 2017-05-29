@@ -28,13 +28,13 @@ namespace mainsos {
             .state('questions', {
                 url: '/questions',
                 templateUrl: '/ngApp/views/questions.html',
-                controller: mainsos.Controllers.QuestionsController,
+                controller: mainsos.Controllers.QuestionController,
                 controllerAs: 'controller'
             })
             .state('answers', {
                 url: '/answers',
                 templateUrl: '/ngApp/views/answers.html',
-                controller: mainsos.Controllers.AnswersController,
+                controller: mainsos.Controllers.AnswerController,
                 controllerAs: 'controller'
             })
             .state('adminCourse', {
