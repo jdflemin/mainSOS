@@ -13,7 +13,7 @@ namespace mainsos.Services{
     }
 
     public getOne(id) {
-      return this.QUESTION_RESOURCE.get({id: id});
+      return this.QUESTION_RESOURCE.get({id: id}).$promise;
     }
 
     public getAllByLesson(lessonID) {
