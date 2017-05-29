@@ -6,7 +6,7 @@ namespace mainsos.Services{
     private SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
     private CRUD_QUESTION_RESOURCE = this.$resource('http://localhost:3003/api/v1/questions/:id')
 
-    constructor(private $resource, private $window) {}
+    constructor(private $resource) {}
 
     public getAll() {
       return this.QUESTION_RESOURCE.query();
@@ -20,8 +20,8 @@ namespace mainsos.Services{
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
     }
 
-    public getQuestionLessonTitle(title) {
-      return this.LESSON_QUESTION_RESOURCE.query({lesson: title});
+    public getQuestionLessonTitle(lesson) {
+      return this.LESSON_QUESTION_RESOURCE.query({title: lesson._title}, lesson);
     }
 
     public searchAnswerContent(keywords) {
@@ -32,16 +32,12 @@ namespace mainsos.Services{
       return this.CRUD_QUESTION_RESOURCE.save(question).$promise;
     }
 
-    public update(id) {
-      return this.CRUD_QUESTION_RESOURCE.save({id: id}).$promise; //{id: question._id}, question
+    public update(question) {
+      return this.CRUD_QUESTION_RESOURCE.save({id: question._id}, question).$promise;
     }
 
     public delete(id) {
       return this.CRUD_QUESTION_RESOURCE.delete({id: id}).$promise;
-    }
-
-    public reShow(){
-      return this.$window.location.reload();
     }
 
   }
