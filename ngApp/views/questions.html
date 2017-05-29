@@ -7,34 +7,27 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle" ng-model="controller.getLessonName(lesson)">{{lesson.name}}</h2>
+      <h2 class="lessonTitle" ng-show="controller.getQuestionLessonTitle(title)"></h2>
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions">
-        <li class="question" ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</li>
-        <li class="question">{{question.qDate}}</li>
-        <button class="questionClickCount" ng-click="controller.questionClickCount(questionId)">{{question.clickCount}}</button>
-        <!-- <li class="question">Question 5</li>
-        <li class="question">Question 1</li>
-        <li class="question">Question 2</li>
-        <li class="question">Question 3</li>
-        <li class="question">Question 4</li>
-        <li class="question">Question 5</li>
-        <li class="question">Question 1</li>
-        <li class="question">Question 2</li>
-        <li class="question">Question 3</li>
-        <li class="question">Question 4</li>
-        <li class="question">Question 5</li> -->
+        <li class="question" ng-click="controller.redirectToAnswers(question._id)">
+          <span ng-click="controller.questionClickCount(questionUptick)">
+            <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
+          </span>
+          <span>{{question.qTitle}}</span>
+          <span>{{question.qDate}}</span>
+         </li>
       </ul>
     </div>
   </div>
   <div class="col-md-3">
     <div class="askQuestion">
       <form>
-        <input type="text" class="newQuestionTitle" placeholder="Question Title">
+        <input type="text" class="newQuestionTitle" placeholder="Question Title" ng-model="controller.question.qTitle">
         <input type="text" class="newQuestionBody" placeholder="code link" rows="1" cols="100">
-        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100"></textarea>
-        <button type="button" class="questionButton">Ask</button>
+        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100" ng-model="controller.question.qContent"></textarea>
+        <button type="button" class="questionButton" ng-click="controller.add(question)">Ask</button>
       </form>
     </div>
   </div>
