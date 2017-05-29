@@ -42,5 +42,16 @@
       </a>
     </div>
   </div>
+    <button class="btn btn-default" ng-click="controller.edit(lesson)">Edit</button>
+<button class="btn btn-danger" ng-click="controller.delete(lesson)">Delete</button>
+<div class="well">
+    <h5>Add New Lesson</h5> <br />
+    <h6>Course ID:</h6>
+    <input type="text" class="form-control" ng-model="controller.lesson.courseId"/>
+    <h6>Title:</h6>
+    <input type="text" class="form-control" ng-model="controller.lesson.title"/> <br />
+    <button class="btn btn-primary" ng-click="controller.add(lesson)">Add</button>
+</div>
+
   </body>
 </html>
