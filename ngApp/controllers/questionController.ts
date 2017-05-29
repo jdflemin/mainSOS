@@ -9,7 +9,6 @@ namespace mainsos.Controllers {
       qContent: '',
       qDate: Date.now(),
       lessonID: this.lesson._id,
-
     }
     public clickCount = 0;
     public userId= '';
