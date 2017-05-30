@@ -1,8 +1,8 @@
-namespace SOS.Services {
+namespace mainSOS.Services {
 
   export class AnswerService {
     private ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/:id');
-    private QUESTION_ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/question/:id/answers');
+    private QUESTION_ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/questions/:id/answers');
     private SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/answers/search/:search');
     private CRUD_ANSWER_SERVICE = this.$resource('http://localhost:3003/api/v1/answers/:id')
 

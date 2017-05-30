@@ -1,4 +1,4 @@
-namespace SOS.Services {
+namespace mainSOS.Services {
 
 export class CommentService {
   public COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/:id');
