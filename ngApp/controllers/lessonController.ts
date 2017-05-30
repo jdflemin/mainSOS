@@ -9,6 +9,7 @@ namespace mainsos.Controllers{
       lessonServices.gets($stateParams.id).then((data) => {
         this.lesson = data;
         this.listLessons();
+
       })
     }
 
