@@ -10,7 +10,7 @@ namespace mainsos.Services {
     }
 
     public getOne(id) {
-      return this.COURSE_RESOURCE.get({id: id});
+      return this.COURSE_RESOURCE.get({id: id}).$promise;
     }
 
     public add(course) {

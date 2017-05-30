@@ -1,20 +1,26 @@
 namespace mainsos.Controllers{
 
   export class LessonsController {
-    private lesson;
+    private Course;
+    //private lesson;
     private lessons;
-    //private course;
 
-    constructor(private courseServices, private lessonServices, private $stateParams){
-      lessonServices.gets($stateParams._id).then((data) => {
-        this.lesson = data;
+    constructor(private courseServices, private lessonServices, private $stateParams, private $state){
+      console.log($stateParams.id);
+      courseServices.getOne($stateParams.id).then((data) => {
+        this.Course = data;
         this.listLessons();
-
       })
     }
 
     public listLessons(){
-      this.lessons = this.lessonServices.getAllCourseLessons(this.lesson._id)
+      console.log(this.Course);
+      this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
+    }
+
+    public redirectToQuestions(lessonId){
+      console.log(lessonId)
+      this.$state.go('questions', {id: lessonId});
     }
 
   }
