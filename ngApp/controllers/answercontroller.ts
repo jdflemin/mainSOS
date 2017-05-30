@@ -22,7 +22,7 @@ namespace mainsos.Controllers{
 
 
     constructor(private questionService, private AnswerService, private commentService, private $stateParams){
-      questionService.getOne($stateParams.id).then((data) => {
+      questionService.getOne($stateParams._id).then((data) => {
         this.question = data;
         this.listAnswers();
       });
