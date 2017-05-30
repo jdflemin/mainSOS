@@ -6,14 +6,14 @@ namespace mainsos.Controllers{
     //private course;
 
     constructor(private courseServices, private lessonServices, private $stateParams){
-      lessonServices.gets($stateParams._id).then((data) => {
+      lessonServices.gets($stateParams.id).then((data) => {
         this.lesson = data;
         this.listLessons();
       })
     }
 
     public listLessons(){
-      this.lessons = this.lessonServices.getAllCourseLessons(this.lesson._id)
+      this.lessons = this.lessonServices.getAllCourseLessons(this.lesson._id);
     }
 
   }
