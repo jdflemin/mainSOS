@@ -6,14 +6,14 @@ namespace mainsos.Services {
 
       constructor(private $resource) {
         this.LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/:id');
-        this.COURSE_LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/courses/:id/lessons');
+        this.COURSE_LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/courses/:id/lessons');
       }
 
       public getAll() {
         return this.LESSON_RESOURCE.query();
       }
 
-      public gets(id) {
+      public getOne(id) {
         return this.LESSON_RESOURCE.get({id: id}).$promise;
       }
 
