@@ -10,22 +10,8 @@
       <h2 class="headerTitle">Welcome</h2>
     </div>
     <div class="lessons">
-      <ul class="lessonsList">
+      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(course._id)">
         <li class="lesson">{{lesson.title}} 1</li>
-        <li class="lesson">Lesson 2</li>
-        <li class="lesson">Lesson 3</li>
-        <li class="lesson">Lesson 4</li>
-        <li class="lesson">Lesson 5</li>
-        <li class="lesson">Lesson 1</li>
-        <li class="lesson">Lesson 2</li>
-        <li class="lesson">Lesson 3</li>
-        <li class="lesson">Lesson 4</li>
-        <li class="lesson">Lesson 5</li>
-        <li class="lesson">Lesson 1</li>
-        <li class="lesson">Lesson 2</li>
-        <li class="lesson">Lesson 3</li>
-        <li class="lesson">Lesson 4</li>
-        <li class="lesson">Lesson 5</li>
       </ul>
     </div>
   </div>

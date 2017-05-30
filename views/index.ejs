@@ -21,7 +21,7 @@
           <li class="menu"><button type="button" class="searchButton">Search</button></li>
           <li class="menu">
             <button type="button" name="button">Get Help</button>
-            <button type="button" name="button">Admin</button>
+            <button type="button" name="button"  ng-controller="indexController as controller" ng-click="controller.openAdminModal()">Admin</button>
           </li>
           <li class="menu"><img src="saveourstacks.png" alt="logo" class="ssLogo"></li>
         </ul>
@@ -66,6 +66,12 @@
   <script src="/ngApp/controllers/indexController.js"></script>
   <script src="/ngApp/controllers/lessonController.js"></script>
   <script src="/ngApp/controllers/questionController.js"></script>
+  <script src="/ngApp/controllers/adminAnswerController.js"></script>
+  <script src="/ngApp/controllers/adminCourseController.js"></script>
+  <script src="/ngApp/controllers/adminLessonController.js"></script>
+  <script src="/ngApp/controllers/adminQuestionController.js"></script>
+
+  <script src="/ngApp/controllers/modalController.js"></script>
 
   <script src="/ngApp/services/answerService.js"></script>
   <script src="/ngApp/services/commentService.js"></script>

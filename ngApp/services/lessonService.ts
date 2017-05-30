@@ -1,17 +1,20 @@
 namespace mainsos.Services {
 
     export class LessonServices {
-      private LESSON_RESOURCE = this.$resource('http://localhost:3004/api/v1/lessons/:id');
-      private COURSE_LESSON_RESOURCE = this.$resource('http://localhost:3004/api/v1/lessons/course/:id/lessons');
+      private LESSON_RESOURCE;
+      private COURSE_LESSON_RESOURCE;
 
-      constructor(private $resource) {}
+      constructor(private $resource) {
+        this.LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/:id');
+        this.COURSE_LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/courses/:id/lessons');
+      }
 
       public getAll() {
         return this.LESSON_RESOURCE.query();
       }
 
-      public get(id) {
-        return this.LESSON_RESOURCE.get({id: id});
+      public getOne(id) {
+        return this.LESSON_RESOURCE.get({id: id}).$promise;
       }
 
       public getAllCourseLessons(courseId) {

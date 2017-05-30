@@ -26,13 +26,5 @@ namespace mainsos.Controllers {
 
     }
 
-    }
-
-  export class LogoutController {
-    constructor(private adminService) {}
-
-    public logout() {
-      this.adminService.logout();
-    }
   }
 }

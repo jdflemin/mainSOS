@@ -8,7 +8,7 @@ namespace mainsos.Controllers {
       };
       public courseID = '';
 
-      constructor(public courseServices, public $window, public $state){
+      constructor(public courseServices, public $window, public $state, private $uibModal){
         this.courses = courseServices.getAll();
       }
 
@@ -23,10 +23,18 @@ namespace mainsos.Controllers {
       }
       
 
-      public redirectToLessons(courseID){
-        console.log(courseID)
-        this.$state.go('lessons', {id: courseID});
+      public redirectToLessons(courseId){
+        console.log(courseId)
+        this.$state.go('lessons', {id: courseId});
       }
+
+
+
+
+
+
+
+
 
 
     }
