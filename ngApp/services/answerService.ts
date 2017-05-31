@@ -1,4 +1,4 @@
-namespace mainSOS.Services {
+namespace mainsos.Services {
 
   export class AnswerService {
     private ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/:id');

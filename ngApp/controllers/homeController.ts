@@ -24,7 +24,6 @@ namespace mainsos.Controllers {
 
 
       public redirectToLessons(courseId){
-        //console.log(courseId)
         this.$state.go('lessons', {id: courseId});
       }
 
