@@ -6,13 +6,13 @@
 <div class="row">
   <div class="col-md-9">
     <div class="questionInfo">
-      <h4 class="h4Question">{{Question.qTitle}}</h4>
-      <p class="pQuestion">{{Question.qContent}}</p>
+      <h4 class="h4Question">{{controller.question.qTitle}}</h4>
+      <p class="pQuestion">{{controller.question.qContent}}</p>
     </div>
-    <div class="answers">
+    <div class="answers" ng-repeat="answer in controller.answers">
       <ul class="answersUL">
         <li class="answerLI">
-          <p class="answer">answer will be here</p>
+          <p class="answer">{{answer.aContent}}</p>
           <button type="button" class="replyButton">Reply</button>
           <div class="discussionContainer">
             <hr>
