@@ -28,10 +28,10 @@ namespace mainsos.Controllers {
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
-    // public redirectToAnswers(question) {
-    //   console.log(question._id);
-    //   this.$state.go('answers', {id: question._title});
-    // }
+    public redirectToAnswers(questionID) {
+      console.log(questionID);
+      this.$state.go('answers', {id: questionID});
+    }
 
     // public addQuestions(question) {
     //   this.newQuestion = this.questionService.add({

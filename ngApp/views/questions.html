@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle">Questions</h2>
+      <h2 class="lessonTitle">Questions for "{{controller.lesson.title}}"</h2>
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions">
@@ -17,8 +17,9 @@
           <span>
             <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
           </span>
-           <span  ng-click="controller.redirectToAnswers(question._qTitle)"> -->
-            {{question.qTitle}}
+           <span  ng-click="controller.redirectToAnswers(question._id)">
+            <h4>{{question.qTitle}}</h4><br>
+            {{question.qContent}}
           </span>
          </li>
       </ul>
