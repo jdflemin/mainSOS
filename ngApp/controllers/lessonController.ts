@@ -18,9 +18,9 @@ namespace mainsos.Controllers{
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
-    public redirectToQuestions(lessonId){
-      console.log(lessonId)
-      this.$state.go('questions', {id: lessonId});
+    public redirectToQuestions(lessonID){
+      console.log(lessonID)
+      this.$state.go('questions', {id: lessonID});
     }
 
   }

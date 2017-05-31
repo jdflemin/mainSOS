@@ -12,7 +12,14 @@
     <div class="lessons">
       <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(lesson._id)">
         <li class="lesson">{{lesson.title}} 1</li>
+
       </ul>
+    </div>
+    <div class="addLesson">
+      <form class="" method="post">
+        <input type="text" name="" value="" placeholder="Add Lesson">
+        <button type="button" name="button">Add Lesson</button>
+      </form>
     </div>
   </div>
   <div class="col-md-3">
