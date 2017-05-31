@@ -1,18 +1,20 @@
 <br>
 <br>
 <br>
+<br>n
 <br>
-<br>
+
+<!-- g-click="controller.questionClickCount(questionUptick)" -->
 
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle" ng-show="controller.getQuestionLessonTitle(title)"></h2>
+      <h2 class="lessonTitle"></h2>
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions">
-        <li class="question" ng-click="controller.redirectToAnswers(question._id)">
-          <span ng-click="controller.questionClickCount(questionUptick)">
+        <li class="question" ng-click="controller.redirectToAnswers(question._qTitle)">
+          <span>
             <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
           </span>
           <span>{{question.qTitle}}</span>
