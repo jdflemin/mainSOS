@@ -2,7 +2,7 @@ namespace mainsos.Services{
 
   export class QuestionService {
     private QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/:id');
-    private LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lesson/:id/questions');
+    private LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lessons/:id/questions');
     private SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
     private CRUD_QUESTION_RESOURCE = this.$resource('http://localhost:3003/api/v1/questions/:id')
 
@@ -13,10 +13,11 @@ namespace mainsos.Services{
     }
 
     public getOne(id) {
-      return this.QUESTION_RESOURCE.get({id: id});
+      return this.QUESTION_RESOURCE.get({id: id}).$promise;
     }
 
     public getAllByLesson(lessonID) {
+      console.log('this' + lessonID)
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
     }
 

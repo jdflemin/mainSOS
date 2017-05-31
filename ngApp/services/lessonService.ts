@@ -4,7 +4,7 @@ namespace mainsos.Services {
       private LESSON_RESOURCE;
       private COURSE_LESSON_RESOURCE;
 
-      constructor(private $resource) {
+      constructor(private $resource, private $window) {
         this.LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/:id');
         this.COURSE_LESSON_RESOURCE = $resource('http://localhost:3004/api/v1/lessons/courses/:id/lessons');
       }
@@ -21,8 +21,8 @@ namespace mainsos.Services {
         return this.COURSE_LESSON_RESOURCE.query({id: courseId});
       }
 
-      public add(course) {
-        return this.LESSON_RESOURCE.save(course).$promise;
+      public add(lesson) {
+        return this.LESSON_RESOURCE.save(lesson).$promise;
       }
 
       public edit(id) {
@@ -31,6 +31,10 @@ namespace mainsos.Services {
 
       public delete(id){
         return this.LESSON_RESOURCE.delete({id: id}).$promise;
+      }
+
+      public reShow(){
+        return this.$window.location.reload();
       }
     }
 

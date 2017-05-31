@@ -2,8 +2,12 @@ namespace mainsos.Controllers{
 
   export class LessonsController {
     private Course;
-    //private lesson;
+    private lesson;
     private lessons;
+    public newLesson = {
+      title: '',
+      courseId: ''
+    };
 
     constructor(private courseServices, private lessonServices, private $stateParams, private $state){
       console.log($stateParams.id);
@@ -18,8 +22,18 @@ namespace mainsos.Controllers{
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
+    public addLesson(){
+      this.newLesson = this.lessonServices.add({
+        title: this.newLesson.title,
+        courseId: this.$stateParams.id,
+      }).then(() => this.lessonServices.reShow());
+    }
+
+    public delete(course){
+      this.lesson = this.lessonServices.delete(course._id).then(() => this.lessonServices.reShow());
+    }
+
     public redirectToQuestions(lessonID){
-      console.log(lessonID)
       this.$state.go('questions', {id: lessonID});
     }
 

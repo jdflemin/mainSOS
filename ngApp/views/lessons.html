@@ -10,15 +10,23 @@
       <h2 class="headerTitle">Welcome</h2>
     </div>
     <div class="lessons">
-      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(lesson._id)">
-        <li class="lesson">{{lesson.title}} 1</li>
-
+      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" >
+        <li class="lesson">
+          <div>
+            <span ng-click="controller.redirectToQuestions(lesson._id)">{{lesson.title}}</span>
+          </div>
+          <hr>
+          <div>
+            <i class="fa fa-eraser" aria-hidden="true" ng-click="controller.delete(lesson)"></i>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+        </li>
       </ul>
     </div>
     <div class="addLesson">
       <form class="" method="post">
-        <input type="text" name="" value="" placeholder="Add Lesson">
-        <button type="button" name="button">Add Lesson</button>
+        <input type="text" name="" value="" placeholder="Add Lesson" ng-model="controller.newLesson.title">
+        <button type="button" name="button" ng-click="controller.addLesson()">Add Lesson</button>
       </form>
     </div>
   </div>
@@ -36,3 +44,5 @@
     </div>
   </div>
 </div>
+
+<h1>NOTE TO JUSTIN: WORK ON EDIT</h1>
