@@ -1,12 +1,18 @@
 namespace mainsos.Services{
 
   export class QuestionService {
-    private QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/:id');
-    private LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lesson/:id/questions');
-    private SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
-    private CRUD_QUESTION_RESOURCE = this.$resource('http://localhost:3003/api/v1/questions/:id')
+    private QUESTION_RESOURCE;
+    private LESSON_QUESTION_RESOURCE;
+    private SEARCH_RESOURCE;
+    private CRUD_QUESTION_RESOURCE;
 
-    constructor(private $resource) {}
+    constructor(private $resource) {
+      this.QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/:id');
+      this.LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lesson/:id/questions');
+      this.SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
+      this.CRUD_QUESTION_RESOURCE = this.$resource('http://localhost:3003/api/v1/questions/:id');
+
+    }
 
     public getAll() {
       return this.QUESTION_RESOURCE.query();
@@ -18,10 +24,6 @@ namespace mainsos.Services{
 
     public getAllByLesson(lessonID) {
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
-    }
-
-    public getQuestionLessonTitle(lesson) {
-      return this.LESSON_QUESTION_RESOURCE.query({title: lesson._title}, lesson);
     }
 
     public searchAnswerContent(keywords) {

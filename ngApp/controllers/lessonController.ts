@@ -19,7 +19,7 @@ namespace mainsos.Controllers{
     }
 
     public redirectToQuestions(lessonId){
-      console.log(lessonId)
+      console.log(lessonId);
       this.$state.go('questions', {id: lessonId});
     }
 

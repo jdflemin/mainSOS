@@ -7,15 +7,15 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle" ng-show="controller.getQuestionLessonTitle(title)"></h2>
+      <h2 class="lessonTitle">{{controller.lesson.title}}</h2>
     </div>
     <div class="questions">
-      <ul class="questionsList" ng-repeat="question in controller.questions">
-        <li class="question" ng-click="controller.redirectToAnswers(question._id)">
-          <span ng-click="controller.questionClickCount(questionUptick)">
+      <ul class="questionsList" ng-repeat="question in controller.questions" >
+        <li class="question">
+          <span ng-click="controller.question.questionClickCount(questionUptick)">
             <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
           </span>
-          <span>{{question.qTitle}}</span>
+          <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
           <span>{{question.qDate}}</span>
          </li>
       </ul>
