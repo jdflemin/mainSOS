@@ -22,11 +22,10 @@ namespace mainsos.Controllers{
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
-<<<<<<< HEAD
     public redirectToQuestions(lessonId){
       console.log(lessonId);
       this.$state.go('questions', {id: lessonId});
-=======
+
     public addLesson(){
       this.newLesson = this.lessonServices.add({
         title: this.newLesson.title,
@@ -40,7 +39,6 @@ namespace mainsos.Controllers{
 
     public redirectToQuestions(lessonID){
       this.$state.go('questions', {id: lessonID});
->>>>>>> refs/remotes/origin/master
     }
 
   }
