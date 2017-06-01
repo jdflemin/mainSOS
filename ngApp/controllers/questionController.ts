@@ -13,11 +13,6 @@ namespace mainsos.Controllers {
       userId: ''
     }
 
-
-
-    constructor(private questionService, private lessonServices, private $stateParams, private $state) {
-      console.log($stateParams.id);
-      this.lessonServices.getOne($stateParams.id).then((data) => {
     //private question;
     // public newQuestion = {
     //   qTitle: '',
@@ -85,43 +80,6 @@ namespace mainsos.Controllers {
 //     // }
     }
  }
-      console.log(questionID);
-      this.$state.go('answers', {id: questionID});
-    }
-
-    // public addQuestions(question) {
-    //   this.newQuestion = this.questionService.add({
-    //     lessonID: this.newQuestion.lessonID,
-    //     qTitle: this.newQuestion.qTitle,
-    //     qContent: this.newQuestion.qContent,
-    //     qDate: this.newQuestion.qDate = Date.now()
-    //   })
-    //   this.listQuestions();
+    //   console.log(questionID);
+    //   this.$state.go('answers', {id: questionID});
     // }
-    //
-    // public updateQuestion(question) {
-    //   this.questionService.update(question);
-    // }
-    //
-    // public delete(Id) {
-    //   this.questionService.delete(Id)
-    //     .then((data) => {
-    //       this.questions = this.questionService.getAll();
-    //     });
-    // }
-    //
-    // public questionClickCount(questionId) {
-    //   let questionUptick = this.questionService.getOne(questionId);
-    //   questionUptick.clickCount++;
-    //   this.updateQuestion(questionUptick);
-    // }
-
-    // public open() {
-    //   this.newQuestion = this.$state.go('answers', {id: this.question._id});
-    // }
-
-    // public getQuestionLessonTitle(title) {
-    //   this.lesson = this.questionService.query({title: this.lesson._title});
-    // }
-  }
-}
