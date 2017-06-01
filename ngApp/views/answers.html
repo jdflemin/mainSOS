@@ -7,13 +7,14 @@
   <div class="col-md-9">
     <div class="questionInfo">
       <h4 class="h4Question">{{controller.question.qTitle}}</h4>
-      <p class="pQuestion">{{controller.question.qContent}}</p>
+      <hr>
+      <p class="pQuestion"><span>{{controller.question.qContent}}</span></p>
     </div>
-    <div class="answers" ng-repeat="answer in controller.answers">
-      <ul class="answersUL">
+    <div class="answers">
+      <ul class="answersUL"  ng-repeat="answer in controller.answers">
         <li class="answerLI">
           <p class="answer">{{answer.aContent}}</p>
-          <button type="button" class="replyButton">Reply</button>
+          <button type="button" class="replyButton" ng-click="controller.listComments(answer._id)">Reply</button>
           <div class="discussionContainer">
             <hr>
             <ul class="disUL">
