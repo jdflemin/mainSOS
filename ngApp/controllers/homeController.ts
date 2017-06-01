@@ -21,10 +21,9 @@ namespace mainsos.Controllers {
           name: this.newCourse.name,
         }).then(() => this.courseServices.reShow());
       }
-      
+
 
       public redirectToLessons(courseId){
-        console.log(courseId)
         this.$state.go('lessons', {id: courseId});
       }
 

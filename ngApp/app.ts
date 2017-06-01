@@ -32,7 +32,7 @@ namespace mainsos {
                 controllerAs: 'controller'
             })
             .state('answers', {
-                url: '/answers',
+                url: '/answers/:id',
                 templateUrl: '/ngApp/views/answers.html',
                 controller: mainsos.Controllers.AnswersController,
                 controllerAs: 'controller'
