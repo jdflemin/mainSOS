@@ -39,16 +39,12 @@ namespace mainsos.Controllers {
     }
 
     public listQuestions() {
-<<<<<<< HEAD
       console.log(this.lesson._id);
-=======
       console.log(this.lesson);
->>>>>>> refs/remotes/origin/master
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
     public redirectToAnswers(questionID) {
-<<<<<<< HEAD
       console.log("rosa" + questionID);
       this.$state.go('answers', {id: questionID});
     }
@@ -89,7 +85,6 @@ namespace mainsos.Controllers {
 //     // }
     }
  }
-=======
       console.log(questionID);
       this.$state.go('answers', {id: questionID});
     }
@@ -130,4 +125,3 @@ namespace mainsos.Controllers {
     // }
   }
 }
->>>>>>> refs/remotes/origin/master
