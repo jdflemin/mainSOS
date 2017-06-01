@@ -9,23 +9,16 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle">Questions for "{{controller.lesson.title}}"</h2>
+      <h2 class="lessonTitle">{{controller.lesson.title}}</h2>
     </div>
     <div class="questions">
-      <ul class="questionsList" ng-repeat="question in controller.questions">
+      <ul class="questionsList" ng-repeat="question in controller.questions" >
         <li class="question">
-          <span>
+          <span ng-click="controller.question.questionClickCount(questionUptick)">
             <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
           </span>
-<<<<<<< HEAD
-           <span  ng-click="controller.redirectToAnswers(question._qTitle)">
-            {{question.qTitle}}
-=======
-           <span  ng-click="controller.redirectToAnswers(question._id)">
-            <h4>{{question.qTitle}}</h4><br>
-            {{question.qContent}}
->>>>>>> 96728d9b6e539444cb74ae27cae8c511b4073aaf
-          </span>
+          <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
+          <span>{{question.qDate}}</span>
          </li>
       </ul>
     </div>

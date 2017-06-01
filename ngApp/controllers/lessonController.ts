@@ -22,6 +22,10 @@ namespace mainsos.Controllers{
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
+    public redirectToQuestions(lessonId){
+      console.log(lessonId);
+      this.$state.go('questions', {id: lessonId});
+
     public addLesson(){
       this.newLesson = this.lessonServices.add({
         title: this.newLesson.title,

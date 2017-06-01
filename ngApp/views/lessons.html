@@ -10,6 +10,8 @@ cd <br>
       <h2 class="headerTitle">Welcome</h2>
     </div>
     <div class="lessons">
+      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(lesson._id)">
+        <li class="lesson">{{lesson.title}} 1</li>
       <ul class="lessonsList" ng-repeat="lesson in controller.lessons" >
         <li class="lesson">
           <div>
