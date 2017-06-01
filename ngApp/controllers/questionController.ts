@@ -13,7 +13,7 @@ namespace mainsos.Controllers {
       userId: ''
     }
 
-    //private question;
+    //private question;             //justins changes he went over with nick.
     // public newQuestion = {
     //   qTitle: '',
     //   qContent: '',
@@ -24,10 +24,9 @@ namespace mainsos.Controllers {
     // public clickCount = 0;
     // public userId= '';
 
-
     constructor(private lessonServices, private questionService, private $stateParams, private $state) {
       console.log($stateParams.id);
-      lessonServices.getOne($stateParams.id).then((data) => {
+      this.lessonServices.getOne($stateParams.id).then((data) => {
           this.lesson = data;
           this.listQuestions();
         })
