@@ -35,12 +35,11 @@ namespace mainsos.Controllers {
 
     public listQuestions() {
       console.log(this.lesson._id);
-      console.log(this.lesson);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
     public redirectToAnswers(questionID) {
-      console.log("rosa" + questionID);
+      console.log(questionID);
       this.$state.go('answers', {id: questionID});
     }
 
