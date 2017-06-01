@@ -18,6 +18,7 @@ namespace mainsos.Controllers {
     //   aContent: "",
     //   userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
     //   likeCount: 0
+  }
 
     constructor(private questionService, private answerService, private commentService, private $stateParams){
       //console.log($stateParams.id);
