@@ -3,38 +3,40 @@ namespace mainsos.Controllers {
   export class AnswerController {
     private question;
     private answers;
+    private answer
     private comments;
-    // public newAnswer = {
-    //   aDate: Date.now(),
-    //   questionId: this.question._id,
-    //   aContent: "",
-    //   userId: "",  //this to be updated when we see what token will be as it will auto populate with who is logged in
-    //   usefulCount: 0,
-    //   bestAnswer: false
-    // }
-    // public newComment = {
-    //   cDate: Date.now(),
-    //   answerId: "",
-    //   aContent: "",
-    //   userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
-    //   likeCount: 0
+    public newAnswer = {
+      aDate: Date.now(),
+      questionId: this.question,
+      aContent: "",
+      userId: "",  //this to be updated when we see what token will be as it will auto populate with who is logged in
+      usefulCount: 0,
+      bestAnswer: false
+    }
+    public newComment = {
+      cDate: Date.now(),
+      answerId: this.answer,
+      aContent: "",
+      userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
+      likeCount: 0
   }
 
-    constructor(private questionService, private answerService, private commentService, private $stateParams){
-      //console.log($stateParams.id);
-      questionService.getOne($stateParams.id).then((data) => {
+    constructor(private questionService, private answerService, private commentService, private $stateParams, private $state) {
+      console.log("Rosa" + $stateParams.id);
+      this.questionService.getOne($stateParams.id).then((data) => {
           this.question = data;
           this.listAnswers();
       });
     }
 
-    private listAnswers() {
-      //console.log(this.question);
+    public listAnswers() {
+      console.log("rosa" + this.question._id);
       this.answers = this.answerService.getAllbyQuestion(this.question._id);
     }
 
-    private listComments(id) {
-      this.comments = this.commentService.getAllbyAnswer(id);
+    public listComments(answerId) {
+      console.log(answerId)
+      this.comments = this.commentService.getAllbyAnswer(answerId);
     }
 
     // public addAnswer() {

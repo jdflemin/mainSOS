@@ -1,18 +1,22 @@
 namespace mainsos.Services {
 
 export class CommentService {
-  public COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/:id');
-  public ANSWER_COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/answers/:id/comment');
-  public CRUD_COMMENT_RESOURCE = this.$resource('http://localhost:3003/api/v1/courses/:id')
+  private COMMENT_RESOURCES;
+  private ANSWER_COMMENT_RESOURCES;
+  private CRUD_COMMENT_RESOURCE;
 
-  constructor(private $resource) {}
+  constructor(private $resource) {
+    this.COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/:id');
+    this.ANSWER_COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/answers/:id/comment');
+    this.CRUD_COMMENT_RESOURCE = this.$resource('http://localhost:3003/api/v1/courses/:id')
+  }
 
   public getAll() {
     return this.COMMENT_RESOURCES.query();
   }
 
-  public getOne(Id) {
-    return this.COMMENT_RESOURCES.get({id: Id});
+  public getOne(id) {
+    return this.COMMENT_RESOURCES.get({id: id}).$promise;
   }
 
   public getAllbyAnswer(QuestionID) {
@@ -27,8 +31,8 @@ export class CommentService {
     return this.CRUD_COMMENT_RESOURCE.save({id: comment._id}, comment).$promise;
   }
 
-  public delete(Id) {
-    return this.CRUD_COMMENT_RESOURCE.delete({id: Id}).$promise;
+  public delete(id) {
+    return this.CRUD_COMMENT_RESOURCE.delete({id: id}).$promise;
   }
 
 

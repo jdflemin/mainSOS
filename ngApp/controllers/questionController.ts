@@ -12,7 +12,7 @@ namespace mainsos.Controllers {
       clickCount: 0,
       userId: ''
     }
-    
+
     //private question;             //justins changes he went over with nick.
     // public newQuestion = {
     //   qTitle: '',
@@ -78,3 +78,6 @@ namespace mainsos.Controllers {
 //     // }
     }
  }
+    //   console.log(questionID);
+    //   this.$state.go('answers', {id: questionID});
+    // }

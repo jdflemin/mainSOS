@@ -23,7 +23,6 @@ namespace mainsos.Services{
     }
 
     public getAllByLesson(lessonID) {
-      console.log('this' + lessonID)
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
     }
 
