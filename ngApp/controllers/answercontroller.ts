@@ -18,21 +18,17 @@ namespace mainsos.Controllers {
     //   aContent: "",
     //   userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
     //   likeCount: 0
-    // }
 
-
-<<<<<<< HEAD
     constructor(private questionService, private AnswerService, private commentService, private $stateParams){
       questionService.getOne($stateParams._id).then((data) => {
         this.question = data;
         this.listAnswers();
-=======
+
     constructor(private questionService, private answerService, private commentService, private $stateParams){
       //console.log($stateParams.id);
       questionService.getOne($stateParams.id).then((data) => {
           this.question = data;
           this.listAnswers();
->>>>>>> refs/remotes/origin/master
       });
     }
 
