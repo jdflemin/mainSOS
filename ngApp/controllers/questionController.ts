@@ -3,7 +3,6 @@ namespace mainsos.Controllers {
   export class QuestionController {
     private lesson;
     private questions;
-<<<<<<< HEAD
     //public question;
     public newQuestion = {
       qTitle: '',
@@ -19,7 +18,6 @@ namespace mainsos.Controllers {
     constructor(private questionService, private lessonServices, private $stateParams, private $state) {
       console.log($stateParams.id);
       this.lessonServices.getOne($stateParams.id).then((data) => {
-=======
     //private question;
     // public newQuestion = {
     //   qTitle: '',
@@ -35,7 +33,6 @@ namespace mainsos.Controllers {
     constructor(private lessonServices, private questionService, private $stateParams, private $state) {
       console.log($stateParams.id);
       lessonServices.getOne($stateParams.id).then((data) => {
->>>>>>> refs/remotes/origin/master
           this.lesson = data;
           this.listQuestions();
         })
