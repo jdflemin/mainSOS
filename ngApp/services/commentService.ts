@@ -7,8 +7,8 @@ export class CommentService {
 
   constructor(private $resource) {
     this.COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/:id');
-    this.ANSWER_COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/answers/:id/comment');
-    this.CRUD_COMMENT_RESOURCE = this.$resource('http://localhost:3003/api/v1/courses/:id')
+    this.ANSWER_COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/answers/:id/comments');
+    this.CRUD_COMMENT_RESOURCE = this.$resource('http://localhost:3003/api/v1/comments/:id')
   }
 
   public getAll() {
