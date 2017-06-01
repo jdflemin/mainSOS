@@ -34,7 +34,7 @@ namespace mainsos {
             .state('answers', {
                 url: '/answers/:id',
                 templateUrl: '/ngApp/views/answers.html',
-                controller: mainsos.Controllers.AnswersController,
+                controller: mainsos.Controllers.AnswerController,
                 controllerAs: 'controller'
             })
             .state('adminCourse', {
