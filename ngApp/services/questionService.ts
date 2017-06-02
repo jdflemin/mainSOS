@@ -42,6 +42,7 @@ namespace mainsos.Services{
       return this.CRUD_QUESTION_RESOURCE.delete({id: id}).$promise;
     }
 
+
   }
 
   angular.module('mainsos').service('questionService', QuestionService);

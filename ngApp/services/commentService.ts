@@ -9,7 +9,6 @@ export class CommentService {
     this.COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/:id');
     this.ANSWER_COMMENT_RESOURCES = this.$resource('http://localhost:3002/api/v1/comments/answers/:id/comments');
     this.CRUD_COMMENT_RESOURCE = this.$resource('http://localhost:3003/api/v1/comments/:id')
-
   }
 
   public getAll() {
@@ -32,8 +31,8 @@ export class CommentService {
     return this.CRUD_COMMENT_RESOURCE.save({id: comment._id}, comment).$promise;
   }
 
-  public delete(Id) {
-    return this.CRUD_COMMENT_RESOURCE.delete({id: Id}).$promise;
+  public delete(id) {
+    return this.CRUD_COMMENT_RESOURCE.delete({id: id}).$promise;
   }
 
 }

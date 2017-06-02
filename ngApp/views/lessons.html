@@ -7,10 +7,12 @@
 <div class="row">
   <div class="col-md-9">
     <div class="lessonsHeaderContainer">
-      <h2 class="headerTitle text-center">Course: {{controller.Course.name}}</h2>
+      <h2 class="headerTitle">Welcome to {{controller.Course.name}}</h2>
     </div>
-    <div class="lessons" >
-      <ul class="lessonsList" ng-repeat="lesson in controller.lessons">
+    <div class="lessons">
+      <!-- <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(lesson._id)">
+        <li class="lesson">{{lesson.title}} 1</li> -->
+      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" >
         <li class="lesson">
           <div>
             <h4 class="text-center" ng-click="controller.redirectToQuestions(lesson._id)">

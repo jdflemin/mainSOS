@@ -27,7 +27,7 @@ namespace mainsos.Controllers{
       this.$state.go('questions', {id: lessonId});
     }
 
-    public addLesson(){
+    public addLesson() {
       this.newLesson = this.lessonServices.add({
         title: this.newLesson.title,
         courseId: this.$stateParams.id,
@@ -41,6 +41,7 @@ namespace mainsos.Controllers{
     public delete(course){
       this.lesson = this.lessonServices.delete(course._id).then(() => this.lessonServices.reShow());
     }
+
   }
 }
 
@@ -81,10 +82,6 @@ public add(lesson){
   this.lesson.courseId='';
   this.lesson.title='';
   }
-
-
-
-
 
   private lesson;
   private lessons;

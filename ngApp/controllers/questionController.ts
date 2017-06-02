@@ -10,7 +10,8 @@ namespace mainsos.Controllers {
       qDate: Date.now(),
       lessonID: this.lesson,
       clickCount: 0,
-      userId: ''
+      userId: '',
+      qCodeLink: ''
     }
 
     //private question;             //justins changes he went over with nick.
@@ -26,14 +27,14 @@ namespace mainsos.Controllers {
 
     constructor(private lessonServices, private questionService, private $stateParams, private $state) {
       console.log($stateParams.id);
-      this.lessonServices.getOne($stateParams.id).then((data) => {
+      this.questions = this.lessonServices.getOne($stateParams.id).then((data) => {
           this.lesson = data;
           this.listQuestions();
         })
     }
 
     public listQuestions() {
-      console.log(this.lesson._id);
+//      console.log(this.lesson._id);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
@@ -41,30 +42,49 @@ namespace mainsos.Controllers {
       this.$state.go('answers', {id: questionId});
     }
 
-    public addQuestions(question) {
-      this.newQuestion = this.questionService.add({lessonID: this.newQuestion.lessonID, qTitle: this.newQuestion.qTitle, qContent: this.newQuestion.qContent, qDate: this.newQuestion.qDate})
-      .then((data) => {
-        this.question.lessonID = this.$stateParams.id;
-        this.question.qTitle = '';
-        this.question.qContent = '';
-        this.question.qDate = Date.now();
-        this.question.clickCount = 0;
-        this.question.userId = '';
-        this.questions.push(data);
-      });
-      this.listQuestions();
+public addQuestions(questions) {
+       this.questionService.add({
+        lessonID: this.$stateParams.id,
+         qTitle: this.newQuestion.qTitle,
+         qContent: this.newQuestion.qContent,
+         qDate: this.newQuestion.qDate,
+         qCodeLink: this.newQuestion.qCodeLink
+       }).then((data)  => {
+         this.questionService.lessonID = '';
+         this.questionService.qTitle = '';
+         this.questionService.qContent = '';
+         this.questionService.qDate = Date.now();
+         this.questionService.qCodeLink = '';
+         this.questions.push(data);
+       })
+       this.listQuestions();
+     }
+
+    public addQuestions() {
+      this.newQuestion.qDate = Date.now();
+      this.newQuestion.lessonID = this.lesson._id;
+      this.newQuestion.clickCount = 0;
+      this.newQuestion.userId = "";  //to be updated when we get the tolken
+      this.questionService.add(this.newQuestion).then(() => this.listQuestions());
     }
+
 //
 //     public updateQuestion(question) {
 //       this.questionService.update(question);
 //     }
 //
-//     public delete(Id) {
-//       this.questionService.delete(Id)
-//         .then((data) => {
-//           this.questions = this.questionService.getAll();
-//         });
-//     }
+
+  //  public delete(id) {
+  //     this.questionService.delete(id)
+  //       .then((data) => {
+  //         this.questions = this.questionService.getAllByLesson(this.lesson._id);
+  //       });
+  //   }
+
+    public delete(ID) {
+      this.questionService.delete(ID).then(() => this.listQuestions());
+    }
+
 //
 //     public questionClickCount(questionId) {
 //       let questionUptick = this.questionService.getOne(questionId);
