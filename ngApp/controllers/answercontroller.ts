@@ -17,7 +17,7 @@ namespace mainsos.Controllers {
     public newComment = {
       cDate: Date.now(),
       answerId: this.answer,
-      aContent: "",
+      cContent: "",
       userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
       likeCount: 0
   }

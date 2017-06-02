@@ -34,7 +34,7 @@ namespace mainsos.Controllers {
     }
 
     public listQuestions() {
-      console.log(this.lesson._id);
+//      console.log(this.lesson._id);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
@@ -42,6 +42,7 @@ namespace mainsos.Controllers {
       console.log(questionID);
       this.$state.go('answers', {id: questionID});
     }
+
 
 public addQuestions(questions) {
        this.questionService.add({
@@ -60,17 +61,32 @@ public addQuestions(questions) {
        })
        this.listQuestions();
      }
+
+    public addQuestions() {
+      this.newQuestion.qDate = Date.now();
+      this.newQuestion.lessonID = this.lesson._id;
+      this.newQuestion.clickCount = 0;
+      this.newQuestion.userId = "";  //to be updated when we get the tolken
+      this.questionService.add(this.newQuestion).then(() => this.listQuestions());
+    }
+
 //
 //     public updateQuestion(question) {
 //       this.questionService.update(question);
 //     }
 //
+
   //  public delete(id) {
   //     this.questionService.delete(id)
   //       .then((data) => {
   //         this.questions = this.questionService.getAllByLesson(this.lesson._id);
   //       });
   //   }
+
+    public delete(ID) {
+      this.questionService.delete(ID).then(() => this.listQuestions());
+    }
+
 //
 //     public questionClickCount(questionId) {
 //       let questionUptick = this.questionService.getOne(questionId);
@@ -87,6 +103,3 @@ public addQuestions(questions) {
 //     // }
     }
  }
-    //   console.log(questionID);
-    //   this.$state.go('answers', {id: questionID});
-    // }

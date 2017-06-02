@@ -13,15 +13,26 @@
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions" >
-        <li class="question">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-1">
           <span ng-click="controller.question.questionClickCount(questionUptick)">
-            <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
-          </span>
+          <center><h3><i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i></h3></center>
+        </span>
+      </div>
+      <div class="col-sm-22">
+        <li class="question">
           <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
-          <span>{{question.qDate}}</span>
+          <span></span>
+          <span class="pull-right">{{question.qDate}}</span><br>
+          <span>
+          <i class="fa fa-eraser" aria-hidden="true" ng-click="controller.delete(question._id)"></i> <!--Method DELETE is not allowed by Access-Control-Allow-Methods in preflight response. looking into this-->
+          <i class="fa fa-pencil" aria-hidden="true" ng-click="controller.edit(question)"></i> <!--not working yet, do we need modal?-->
+          </span>
+        </div>
         </li>
       </ul>
-    </div>
+    </div>s
   </div>
   <div class="col-md-3">
     <div class="askQuestion">
@@ -29,6 +40,7 @@
         <input type="text" class="newQuestionTitle" placeholder="Question Title" ng-model="controller.newQuestion.qTitle">
         <input type="text" class="newQuestionBody" placeholder="code link" rows="1" cols="100" ng-model="controller.question.qCodeLink">
         <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100" ng-model="controller.question.qContent"></textarea>
+
         <button type="button" class="questionButton" ng-click="controller.addQuestions()">Ask</button>
       </form>
     </div>
