@@ -2,8 +2,9 @@ namespace mainsos.Controllers {
 
     export class IndexController {
       public courses;
+      public search;
 
-      constructor(courseServices, private $uibModal){
+      constructor(courseServices, private $uibModal, private $http){
         this.courses = courseServices.getAll()
       }
 

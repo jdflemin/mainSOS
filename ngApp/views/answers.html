@@ -15,14 +15,17 @@
         <li class="answerLI">
           <p class="answer">{{answer.aContent}}</p>
           <button type="button" class="replyButton" ng-click="controller.listComments(answer._id)">Reply</button>
+          <button type="button" ng-click="controller.deleteAnswer(answer._id)">Delete</button>
           <div class="discussionContainer">
             <hr>
-            <ul class="disUL">
-              <li class="disLI">dis 1</li>
-              <li class="disLI">dis 2</li>
+            <ul class="disUL" ng-repeat="comment in controller.comments">
+              <li class="disLI">
+                <span>{{comment.aComment}}</span>
+                <span>{{comment.cDate}}</span>
+              </li>
             </ul>
             <textarea name="name" class="disText" rows="4" cols="50" placeholder="This is for dis"></textarea>
-            <button type="button" class="respondButton">Respond</button>
+            <button type="button" class="respondButton" >Respond</button>
           </div>
         </li>
       </ul>
@@ -42,8 +45,8 @@
 <div class="row">
   <div class="col-md-12">
     <form class="aForm">
-      <textarea name="name" class="answerText" rows="4" cols="80">Please enter your answer/solution...</textarea>
-      <button type="button" class="answerButton">Answer</button>
+      <textarea name="name" class="answerText" ng-model="controller.newAnswer.aContent" rows="4" cols="80">Please enter your answer/solution...</textarea>
+      <button type="button" class="answerButton" ng-click="controller.addAnswer()">Answer</button>
     </form>
   </div>
 </div>
