@@ -60,14 +60,6 @@ public addQuestions(questions) {
        this.listQuestions();
      }
 
-    public addQuestions() {
-      this.newQuestion.qDate = Date.now();
-      this.newQuestion.lessonID = this.lesson._id;
-      this.newQuestion.clickCount = 0;
-      this.newQuestion.userId = "";  //to be updated when we get the tolken
-      this.questionService.add(this.newQuestion).then(() => this.listQuestions());
-    }
-
 //
 //     public updateQuestion(question) {
 //       this.questionService.update(question);
