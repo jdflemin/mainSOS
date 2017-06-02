@@ -19,8 +19,8 @@ export class CommentService {
     return this.COMMENT_RESOURCES.get({id: id}).$promise;
   }
 
-  public getAllbyAnswer(QuestionID) {
-    return this.ANSWER_COMMENT_RESOURCES.query({id: QuestionID});
+  public getAllbyAnswer(answerId) {
+    return this.ANSWER_COMMENT_RESOURCES.query({id: answerId});
   }
 
   public add(comment) {
@@ -34,7 +34,6 @@ export class CommentService {
   public delete(id) {
     return this.CRUD_COMMENT_RESOURCE.delete({id: id}).$promise;
   }
-
 
 }
 

@@ -18,12 +18,14 @@
           <button type="button" ng-click="controller.deleteAnswer(answer._id)">Delete</button>
           <div class="discussionContainer">
             <hr>
-            <ul class="disUL">
-              <li class="disLI">dis 1</li>
-              <li class="disLI">dis 2</li>
+            <ul class="disUL" ng-repeat="comment in controller.comments">
+              <li class="disLI">
+                <span>{{comment.aComment}}</span>
+                <span>{{comment.cDate}}</span>
+              </li>
             </ul>
             <textarea name="name" class="disText" rows="4" cols="50" placeholder="This is for dis"></textarea>
-            <button type="button" class="respondButton">Respond</button>
+            <button type="button" class="respondButton" >Respond</button>
           </div>
         </li>
       </ul>

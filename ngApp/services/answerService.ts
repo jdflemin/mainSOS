@@ -21,8 +21,8 @@ namespace mainsos.Services {
       return this.ANSWER_RESOURCE.get({id: id}).$promise;
     }
 
-    public getAllbyQuestion(QuestionID) {
-      return this.QUESTION_ANSWER_RESOURCE.query({id: QuestionID});
+    public getAllbyQuestion(questionId) {
+      return this.QUESTION_ANSWER_RESOURCE.query({id: questionId});
     }
 
     public searchAnswerContent(keywords) {
