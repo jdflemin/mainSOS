@@ -6,22 +6,25 @@
 <div class="row">
   <div class="col-md-9">
     <div class="questionInfo">
-      <h4 class="h4Question">{{controller.question.qTitle}}</h4>
+      <h4 class="h4Question text-center">Question: {{controller.question.qTitle}}</h4>
+      <hr>
       <p class="pQuestion">{{controller.question.qContent}}</p>
     </div>
-    <div class="answers" ng-repeat="answer in controller.answers">
-      <ul class="answersUL">
+    <div class="answers" >
+      <ul class="answersUL" ng-repeat="answer in controller.answers">
         <li class="answerLI">
           <p class="answer">{{answer.aContent}}</p>
-          <button type="button" class="replyButton">Reply</button>
+          <button type="button" class="replyButton" ng-click="controller.findAnswerComments(answer._id)">Comment</button>
           <div class="discussionContainer">
             <hr>
-            <ul class="disUL">
-              <li class="disLI">dis 1</li>
-              <li class="disLI">dis 2</li>
+            <ul class="disUL" ng-repeat="comment in controller.comments">
+              <li class="disLI">
+                <span>{{comment.aComment}}</span>
+                <span>{{comment.cDate}}</span>
+              </li>
             </ul>
             <textarea name="name" class="disText" rows="4" cols="50" placeholder="This is for dis"></textarea>
-            <button type="button" class="respondButton">Respond</button>
+            <button type="button" class="respondButton" >Respond</button>
           </div>
         </li>
       </ul>

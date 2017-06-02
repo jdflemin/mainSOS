@@ -3,7 +3,7 @@ namespace mainsos.Controllers {
   export class QuestionController {
     private lesson;
     private questions;
-    //public question;
+    public question;
     public newQuestion = {
       qTitle: '',
       qContent: '',
@@ -12,7 +12,7 @@ namespace mainsos.Controllers {
       clickCount: 0,
       userId: ''
     }
-    
+
     //private question;             //justins changes he went over with nick.
     // public newQuestion = {
     //   qTitle: '',
@@ -37,20 +37,23 @@ namespace mainsos.Controllers {
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
-    public redirectToAnswers(questionID) {
-      console.log(questionID);
-      this.$state.go('answers', {id: questionID});
+    public redirectToAnswers(questionId) {
+      this.$state.go('answers', {id: questionId});
     }
 
-//     public addQuestions(question) {
-//       this.newQuestion = this.questionService.add({
-//         lessonID: this.newQuestion.lessonID,
-//         qTitle: this.newQuestion.qTitle,
-//         qContent: this.newQuestion.qContent,
-//         qDate: this.newQuestion.qDate = Date.now()
-//       })
-//       this.listQuestions();
-//     }
+    public addQuestions(question) {
+      this.newQuestion = this.questionService.add({lessonID: this.newQuestion.lessonID, qTitle: this.newQuestion.qTitle, qContent: this.newQuestion.qContent, qDate: this.newQuestion.qDate})
+      .then((data) => {
+        this.question.lessonID = this.$stateParams.id;
+        this.question.qTitle = '';
+        this.question.qContent = '';
+        this.question.qDate = Date.now();
+        this.question.clickCount = 0;
+        this.question.userId = '';
+        this.questions.push(data);
+      });
+      this.listQuestions();
+    }
 //
 //     public updateQuestion(question) {
 //       this.questionService.update(question);
@@ -72,9 +75,6 @@ namespace mainsos.Controllers {
 //     // public open() {
 //     //   this.newQuestion = this.$state.go('answers', {id: this.question._id});
 //     // }
-//
-//     // public getQuestionLessonTitle(title) {
-//     //   this.lesson = this.questionService.query({title: this.lesson._title});
-//     // }
+
     }
  }

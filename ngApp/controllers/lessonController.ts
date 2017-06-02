@@ -25,6 +25,7 @@ namespace mainsos.Controllers{
     public redirectToQuestions(lessonId){
       console.log(lessonId);
       this.$state.go('questions', {id: lessonId});
+    }
 
     public addLesson(){
       this.newLesson = this.lessonServices.add({
@@ -33,14 +34,13 @@ namespace mainsos.Controllers{
       }).then(() => this.lessonServices.reShow());
     }
 
+    public editLesson(id){
+      this.lessonServices.post(id).then(() => this.lessonServices.reShow());
+    }
+
     public delete(course){
       this.lesson = this.lessonServices.delete(course._id).then(() => this.lessonServices.reShow());
     }
-
-    public redirectToQuestions(lessonID){
-      this.$state.go('questions', {id: lessonID});
-    }
-
   }
 }
 

@@ -1,4 +1,4 @@
-cd <br>
+<br>
 <br>
 <br>
 <br>
@@ -7,19 +7,21 @@ cd <br>
 <div class="row">
   <div class="col-md-9">
     <div class="lessonsHeaderContainer">
-      <h2 class="headerTitle">Welcome</h2>
+      <h2 class="headerTitle text-center">Course: {{controller.Course.name}}</h2>
     </div>
-    <div class="lessons">
-      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" ng-click="controller.redirectToQuestions(lesson._id)">
-        <li class="lesson">{{lesson.title}} 1</li>
-      <ul class="lessonsList" ng-repeat="lesson in controller.lessons" >
+    <div class="lessons" >
+      <ul class="lessonsList" ng-repeat="lesson in controller.lessons">
         <li class="lesson">
           <div>
-            <span ng-click="controller.redirectToQuestions(lesson._id)">{{lesson.title}}</span>
+            <h4 class="text-center" ng-click="controller.redirectToQuestions(lesson._id)">
+                <strong contenteditable="true">{{lesson.title}}</strong>
+            </h4>
           </div>
           <hr>
           <div>
-            <i class="fa fa-eraser" aria-hidden="true" ng-click="controller.delete(lesson)"></i>
+            <span class="pull-right">
+              <i class="fa fa-eraser" aria-hidden="true" ng-click="controller.delete(lesson)"></i>
+            </span>
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </div>
         </li>
