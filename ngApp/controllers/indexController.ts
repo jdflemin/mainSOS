@@ -4,7 +4,7 @@ namespace mainsos.Controllers {
       public courses;
       public searchString = '';
 
-      constructor(courseServices, private $uibModal, private $state){
+      constructor(courseServices, private $uibModal, private $http, private $state){
         this.courses = courseServices.getAll()
       }
 
