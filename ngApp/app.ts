@@ -67,6 +67,12 @@ namespace mainsos {
                 controller: mainsos.Controllers.AdminAnswersController,
                 controllerAs: 'controller'
             })
+            .state('searchPage', {
+                url: '/searchPage/:search',
+                templateUrl: '/ngApp/views/searchPage.html',
+                controller: mainsos.Controllers.SearchController,
+                controllerAs: 'controller'
+            })
 
             .state('test', {
                 url: '/test',
