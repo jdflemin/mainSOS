@@ -17,8 +17,8 @@
         <ul class="bar">
           <li id="dropDownMenu" class="menu"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></li>
           <li class="menu"><img src="SOSs.png" alt="logo" class="ccLogo"></li>
-          <li class="menu"><input type="text" class="search" placeholder="Search..."></li>
-          <li class="menu"><button type="button" class="searchButton">Search</button></li>
+          <li class="menu"><input type="text" class="search" ng-controller="indexController as controller" ng-model="controller.searchString" placeholder="Search..." /></li>
+          <li class="menu"><button type="button" class="searchButton" ng-controller="indexController as controller" ng-click="controller.goToSearch()">Search</button></li>
           <li class="menu">
             <button type="button" name="button">Get Help</button>
             <button type="button" name="button"  ng-controller="indexController as controller" ng-click="controller.openAdminModal()">Admin</button>
@@ -71,6 +71,7 @@
   <script src="/ngApp/controllers/adminCourseController.js"></script>
   <script src="/ngApp/controllers/adminLessonController.js"></script>
   <script src="/ngApp/controllers/adminQuestionController.js"></script>
+  <script src="/ngApp/controllers/searchController.js"></script>
 
   <script src="/ngApp/controllers/modalController.js"></script>
 
