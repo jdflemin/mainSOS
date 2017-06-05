@@ -8,6 +8,10 @@
   <ul class="homeUL">
     <li class="liste" ng-repeat="course in controller.courses"><div class="container">
       <i class="fa fa-trash fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.delete(course)"></i>
+      <label class="switch">
+        <input type="checkbox">
+        <div class="slider round"></div>
+      </label>
       <img class="image" src="/hex.png" />
       <h6 class="text" ng-click="controller.redirectToLessons(course._id)">
         {{course.name}}

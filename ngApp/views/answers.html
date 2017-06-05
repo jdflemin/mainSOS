@@ -18,10 +18,11 @@
       <ul class="answersUL"  ng-repeat="answer in controller.answers">
         <li class="answerLI">
           <p class="answer">{{answer.aContent}}</p>
-          <button type="button" class="replyButton" ng-click="controller.listComments(answer._id)">Reply</button>
+          <button type="button" class="replyButton" ng-click="controller.openComments()">Reply</button>
           <button type="button" ng-click="controller.deleteAnswer(answer._id)">Delete</button>
           <div class="discussionContainer">
             <hr>
+            <h1>testing</h1>
             <ul class="disUL" ng-repeat="comment in controller.comments">
               <li class="disLI">
                 <span>{{comment.aComment}}</span>
