@@ -39,6 +39,10 @@ namespace mainsos.Controllers {
       console.log("sendAnswerIdToComment" + answerId);
       this.$state.go('comments', {id: answerId});
     }
+
+    public openComments(){
+        $('.discussionContainer').slideToggle(500)
+    }
 }
   export class CommentController {
     private answer
@@ -57,46 +61,46 @@ namespace mainsos.Controllers {
           this.answer = data;
           this.listComments();
       });
+
+      // console.log("rosa" + this.question._id);
+      // this.answers = this.answerService.getAllbyQuestion(this.question._id);
     }
 
-      console.log("rosa" + this.question._id);
-      this.answers = this.answerService.getAllbyQuestion(this.question._id);
+
+    public listComments() {
+      console.log(this.answer._id)
+      this.comments = this.commentService.getAllbyAnswer(this.answer._id);
     }
 
-    public listComments(answerId) {
-      console.log(answerId)
-      this.comments = this.commentService.getAllbyAnswer(answerId);
-    }
-
-    public addAnswer(answers) {
-      this.answerService.add({
-        aDate: Date.now(),
-        questionId: this.$stateParams.id,
-        aContent: this.newAnswer.aContent,
-        userId: this.$stateParams.id,
-        usefulCount: this.newAnswer.usefulCount,
-        bestAnswer: this.newAnswer.bestAnswer,
-        aCodeLink: this.newAnswer.aCodeLink,
-      }).then((data) => {
-        this.answerService.questionId = '';
-        this.answerService.aContent = '';
-        this.answerService.userId = '';
-        this.answerService.userfulCount = '';
-        this.answerService.bestAnswer = '';
-        this.answerService.aCodeLink = '';
-        this.answers.push(data);
-      })
-      this.listAnswers();
-    }
-
-    deleteAnswer(id) {
-      console.log("deleting 1");
-      this.answerService.delete(id)
-      .then((data) => {
-        this.answers = this.answerService.answerShowAll();
-      }).catch((err) => console.log(err));
-      console.log("deleting 2");
-    }
+    // public addAnswer(answers) {
+    //   this.answerService.add({
+    //     aDate: Date.now(),
+    //     questionId: this.$stateParams.id,
+    //     aContent: this.newAnswer.aContent,
+    //     userId: this.$stateParams.id,
+    //     usefulCount: this.newAnswer.usefulCount,
+    //     bestAnswer: this.newAnswer.bestAnswer,
+    //     aCodeLink: this.newAnswer.aCodeLink,
+    //   }).then((data) => {
+    //     this.answerService.questionId = '';
+    //     this.answerService.aContent = '';
+    //     this.answerService.userId = '';
+    //     this.answerService.userfulCount = '';
+    //     this.answerService.bestAnswer = '';
+    //     this.answerService.aCodeLink = '';
+    //     this.answers.push(data);
+    //   })
+    //   this.listAnswers();
+    // }
+    //
+    // deleteAnswer(id) {
+    //   console.log("deleting 1");
+    //   this.answerService.delete(id)
+    //   .then((data) => {
+    //     this.answers = this.answerService.answerShowAll();
+    //   }).catch((err) => console.log(err));
+    //   console.log("deleting 2");
+    // }
 
     // public addComment(answerID) {
     //   this.newComment.cDate = Date.now();
@@ -104,13 +108,14 @@ namespace mainsos.Controllers {
     //   this.commentService.add(this.newComment);
     // }
 
-    public listComments() {
-      console.log("answerId" + this.answer._id);
-      this.comments = this.commentService.getAllbyAnswer(this.answer._id);
-    }
+    // public listComments() {
+    //   console.log("answerId" + this.answer._id);
+    //   this.comments = this.commentService.getAllbyAnswer(this.answer._id);
+    // }
 
  }
 }
+
 // public addAnswer() {
 //   this.newAnswer.aDate = Date.now();
 //   this.answerService.add(this.newAnswer);

@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: black;
+    background-color: rgba(0,0,0,0.7);
 }
 
 #topBar .menu{
@@ -55,6 +55,7 @@
 
 #topBar li .search {
   width: 100%;
+  color: black;
 }
 
 #topBar li:nth-child(4) {

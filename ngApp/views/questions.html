@@ -18,7 +18,7 @@
               <i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i>
             </span>
           <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
-          <span class="pull-right" ng-click="controller.redirectToAnswers(question._id)">{{question.qDate}}</span>
+          <span class="pull-right" ng-click="controller.redirectToAnswers(question._id)">{{question.qDate | date:"MM/dd/yyyy h:mma"}}</span>
          </li>
       </ul>
    </div>
