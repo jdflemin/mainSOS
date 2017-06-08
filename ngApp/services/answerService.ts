@@ -26,7 +26,7 @@ namespace mainsos.Services {
     }
 
     public searchAnswerContent(keywords) {
-      return this.SEARCH_RESOURCE.query({search: keywords});
+      return this.SEARCH_RESOURCE.query({search: keywords}).$promise;
     }
 
     public add(answer) {

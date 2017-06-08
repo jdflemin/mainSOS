@@ -26,7 +26,7 @@ namespace mainsos.Services{
       return this.LESSON_QUESTION_RESOURCE.query({id: lessonID});
     }
 
-    public searchAnswerContent(keywords) {
+    public searchQuestionContent(keywords) {
       return this.SEARCH_RESOURCE.query({search: keywords});
     }
 
