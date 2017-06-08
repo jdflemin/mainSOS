@@ -24,13 +24,12 @@ namespace mainsos.Controllers {
     }
 ////////////////////Questions Section
     public listQuestions() {
-      console.log(this.lesson._id);
+//      console.log(this.lesson._id);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
-    public redirectToAnswers(questionID) {
-      console.log(questionID);
-      this.$state.go('answers', {id: questionID});
+    public redirectToAnswers(questionId) {
+      this.$state.go('answers', {id: questionId});
     }
 
     public addQuestions(questions) {
@@ -66,6 +65,7 @@ namespace mainsos.Controllers {
      deleteQuestionwithAllAnswers(id) {
 
      }
+
 ////////////////
 
 //////////////upTick Section for questions
@@ -88,5 +88,8 @@ namespace mainsos.Controllers {
 //////////////////
 
 
-     }
+    public delete(ID) {
+      this.questionService.delete(ID).then(() => this.listQuestions());
+    }
+}
 }

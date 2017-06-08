@@ -7,3 +7,5 @@ npm-debug.log
 
 !gulpfile.js
 !UIfunctions.js
+!commentstoggle.js
+!coursetoggle.js

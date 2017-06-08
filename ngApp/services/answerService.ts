@@ -8,7 +8,7 @@ namespace mainsos.Services {
 
     constructor(private $resource, private $window) {
       this.ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/:id');
-      this.QUESTION_ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/questions/:id/answers');
+      this.QUESTION_ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/question/:id/answers');
       this.SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/answers/search/:search');
       this.CRUD_ANSWER_SERVICE = this.$resource('http://localhost:3003/api/v1/answers/:id')
     }
@@ -21,12 +21,12 @@ namespace mainsos.Services {
       return this.ANSWER_RESOURCE.get({id: id}).$promise;
     }
 
-    public getAllbyQuestion(QuestionID) {
-      return this.QUESTION_ANSWER_RESOURCE.query({id: QuestionID});
+    public getAllbyQuestion(questionId) {
+      return this.QUESTION_ANSWER_RESOURCE.query({id: questionId});
     }
 
     public searchAnswerContent(keywords) {
-      return this.SEARCH_RESOURCE.query({search: keywords});
+      return this.SEARCH_RESOURCE.query({search: keywords}).$promise;
     }
 
     public add(answer) {

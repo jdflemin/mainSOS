@@ -37,6 +37,12 @@ namespace mainsos {
                 controller: mainsos.Controllers.AnswerController,
                 controllerAs: 'controller'
             })
+            .state('comments', {
+                url: '/comments/:id',
+                templateUrl: '/ngApp/views/answers.html',
+                controller: mainsos.Controllers.CommentController,
+                controllerAs: 'controller'
+            })
             .state('adminCourse', {
                 url: '/admincourse',
                 templateUrl: '/ngApp/views/admincourse.html',
@@ -59,6 +65,12 @@ namespace mainsos {
                 url: '/adminanswers',
                 templateUrl: '/ngApp/views/adminanswers.html',
                 controller: mainsos.Controllers.AdminAnswersController,
+                controllerAs: 'controller'
+            })
+            .state('searchPage', {
+                url: '/searchPage/:search',
+                templateUrl: '/ngApp/views/searchPage.html',
+                controller: mainsos.Controllers.SearchController,
                 controllerAs: 'controller'
             })
 

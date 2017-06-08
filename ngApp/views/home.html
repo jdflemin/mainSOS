@@ -9,6 +9,10 @@
     <li class="liste" ng-repeat="course in controller.courses"><div class="container">
       <i class="fa fa-pencil fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.showEditModalCourse(course)"></i>
       <i class="fa fa-trash fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.delete(course)"></i>
+      <label class="switch">
+        <input type="checkbox" ng-checked={{course.isEnabled}}>
+        <div class="slider round" ng-click="controller.courseActivation(course)"></div>
+      </label>
       <img class="image" src="/hex.png" />
       <h6 class="text" ng-click="controller.redirectToLessons(course._id)">
         {{course.name}}
@@ -23,4 +27,4 @@
 </form>
 
 
-<h1>NOTE TO JUSTIN: WORK ON TOGGLE AND EDIT FEATURES/finish navbar dropdown</h1>
+<!-- NOTE: ng-if="course.isEnabled" -->

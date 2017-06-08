@@ -2,9 +2,9 @@ namespace mainsos.Controllers {
 
     export class IndexController {
       public courses;
-      public search;
+      public searchString;
 
-      constructor(courseServices, private $uibModal, private $http){
+      constructor(courseServices, private $uibModal, private $state){
         this.courses = courseServices.getAll()
       }
 
@@ -15,6 +15,10 @@ namespace mainsos.Controllers {
           controllerAs: 'controller',
           size: 'lg'
         });
+      }
+
+      public goToSearch() {
+        this.$state.go('searchPage', {search: this.searchString});
       }
 
     }

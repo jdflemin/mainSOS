@@ -17,7 +17,7 @@ namespace mainsos.Controllers {
     public newComment = {
       cDate: Date.now(),
       answerId: this.answer,
-      aContent: "",
+      cContent: "",
       userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
       likeCount: 0
   }
@@ -31,7 +31,7 @@ namespace mainsos.Controllers {
     }
 //////////Answer Section
     public listAnswers() {
-      console.log("rosa" + this.question._id);
+      console.log("questionId" + this.question._id);
       this.answers = this.answerService.getAllbyQuestion(this.question._id);
     }
 
@@ -56,13 +56,9 @@ namespace mainsos.Controllers {
       this.listAnswers();
     }
 
-    deleteAnswer(id) {
-      console.log("deleting 1");
-      this.answerService.delete(id)
-      .then((data) => {
-        this.answers = this.answerService.answerShowAll();
-      }).catch((err) => console.log(err));
-      console.log("deleting 2");
+    public findAnswerComments(answerId) {
+      console.log("sendAnswerIdToComment" + answerId);
+      this.$state.go('comments', {id: answerId});
     }
 
     public showEditAnswerModal(answer) {
@@ -77,27 +73,6 @@ namespace mainsos.Controllers {
       });
       modal.closed.then(() => {this.listAnswers()});
     }
-  /////////////////////
-
-  ////////////////upTick section for answers
-    countUpTickAnswer(answer) {
-      answer.usefulCount += 1;
-      this.answerService.update({
-        _id: answer._id,
-        aDate: answer.aDate,
-        questionId: answer.questionId,
-        aContent: answer.aContent,
-        userId: answer.userId,
-        usefulCount: answer.usefulCount,
-        bestAnswer: answer.bestAnswer,
-        aCodeLink: answer.aCodeLink,
-      })
-    }
-
-
-  //////////////////////////
-
-  /////////////////////Question Section for modal
 
     public showEditQuestionModal(question) {
         let modal = this.$uibModal.open({
@@ -111,46 +86,27 @@ namespace mainsos.Controllers {
       });
     //  modal.closed.then(() => this.questionService.showAllQuestions());
     }
-////////////////// end of question modal
-    // public listComments(answerId) {
-    //   console.log(answerId)
-    //   this.comments = this.commentService.getAllbyAnswer(answerId);
-    // }
 
-    // public addComment(answerID) {
-    //   this.newComment.cDate = Date.now();
-    //   this.newComment.answerId = answerID;
-    //   this.commentService.add(this.newComment);
-    // }
+    ////////////////upTick section for answers
+      countUpTickAnswer(answer) {
+        answer.usefulCount += 1;
+        this.answerService.update({
+          _id: answer._id,
+          aDate: answer.aDate,
+          questionId: answer.questionId,
+          aContent: answer.aContent,
+          userId: answer.userId,
+          usefulCount: answer.usefulCount,
+          bestAnswer: answer.bestAnswer,
+          aCodeLink: answer.aCodeLink,
+        })
+      }
 
-    // public usefulAnswer(answerId) {
-    //   let tempAnswer = this.answerService.getOne(answerId);
-    //   tempAnswer.usefulCount++;
-    //   this.updateAnswer(tempAnswer);
-    //   this.listAnswers();
-    // }
-    //
-    // public setBestAnswer(answerID) {
-    //   let tempAnswer = this.answerService.getOne(answerID);
-    //   tempAnswer.bestAnswer = true;
-    //   this.updateAnswer(tempAnswer);
-    //   this.listAnswers();
-    // }
-    //
-    // public likeComment(commentID){
-    //   let tempComment = this.commentService.getOne(commentID);
-    //   tempComment.likeCount++;
-    //   this.updateComment(tempComment);
-    // }
-    //
-    // public updateAnswer(answer) {
-    //   this.answerService.update(answer);
-    // }
-    //
-    // public updateComment(comment) {
-    //   this.commentService.update(comment);
-    // }
-  }
+
+    //////////////////////////
+}
+
+
 ///////////////Answer Modal for editing the answers
   export class editModalAnswerController {
     public answers;
@@ -196,6 +152,7 @@ namespace mainsos.Controllers {
       this.questionService.update({
         _id: this.questions._id,
         qTitle: this.questions.qTitle,
+        qContent: this.questions.qContent,
         qDate:this.questions.qDate,
         userID: this.questions.userID,
         lessonID: this.questions.lessonID,
@@ -212,5 +169,3 @@ namespace mainsos.Controllers {
 
 
   }
-////////////////////////////
-}

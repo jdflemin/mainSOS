@@ -3,37 +3,30 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 
 <!-- g-click="controller.questionClickCount(questionUptick)" -->
 
 <div class="row">
   <div class="col-md-9">
     <div class="lessonHeaderContainer">
-      <h2 class="lessonTitle">{{controller.lesson.title}}</h2>
+      <h2 class="lessonTitle text-center">Lesson: {{controller.lesson.title}}</h2>
     </div>
     <div class="questions">
       <ul class="questionsList" ng-repeat="question in controller.questions | orderBy:'-clickCount'" >
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-1">
-                <h3>
-                  <i class="fa fa-sort-asc fa-xl" aria-hidden="true" ng-click="controller.countUpTick(question)">
-                  </i>
-                </h3>
-<!--for the upTick to display-->
-                {{question.clickCount}}
-
-<!--end-->
-              </span>
+              <h3><i class="fa fa-sort-asc fa-xl" aria-hidden="true" ng-click="controller.countUpTick(question)"></i></h3>
+<!--for the upTick to display--><span>{{question.clickCount}}</span><!--end-->
             </div>
           <div class="col-sm-22">
           <li class="question">
             <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
             <span class="pull-right">{{question.qDate}}</span>
-          <hr><!--can delete when the edit and delete button get pretty-->
-          <!--display question <span>{{question.qContent}}</span> -->
           <span>
-
           <i class="fa fa-pencil" ng-click="controller.showEditQuestionModal()"></i>
           <i class="fa fa-trash" ng-click="controller.deleteQuestion(question._id)"></i> delete question
           </span>
@@ -41,7 +34,7 @@
       </div>
     </div>
       </ul>
-    </div>
+   </div>
   </div>
   <div class="col-md-3">
     <div class="askQuestion">
