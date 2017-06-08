@@ -29,6 +29,10 @@ namespace mainsos.Services {
         return this.LESSON_RESOURCE.post({id: id}).$promise;
       }
 
+      public update(lesson) {
+        return this.LESSON_RESOURCE.save({id: lesson._id}, lesson).$promise;
+      }
+
       public delete(id){
         return this.LESSON_RESOURCE.delete({id: id}).$promise;
       }

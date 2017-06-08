@@ -22,22 +22,17 @@ namespace mainsos.Controllers {
       likeCount: 0
   }
 
-    constructor(private questionService, private answerService, private commentService, private $stateParams, private $state) {
+    constructor(private questionService, private answerService, private commentService, private $stateParams, private $state, private $uibModal) {
       console.log("Rosa" + $stateParams.id);
       this.answers = this.questionService.getOne($stateParams.id).then((data) => {
           this.question = data;
           this.listAnswers();
       });
     }
-
+//////////Answer Section
     public listAnswers() {
       console.log("rosa" + this.question._id);
       this.answers = this.answerService.getAllbyQuestion(this.question._id);
-    }
-
-    public listComments(answerId) {
-      console.log(answerId)
-      this.comments = this.commentService.getAllbyAnswer(answerId);
     }
 
     public addAnswer(answers) {
@@ -69,6 +64,58 @@ namespace mainsos.Controllers {
       }).catch((err) => console.log(err));
       console.log("deleting 2");
     }
+
+    public showEditAnswerModal(answer) {
+      let modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/editAnswer.html',
+        controller: editModalAnswerController,
+        controllerAs: 'controller',
+        resolve: {
+          answer: () => answer
+        },
+        size: 'md'
+      });
+      modal.closed.then(() => {this.listAnswers()});
+    }
+  /////////////////////
+
+  ////////////////upTick section for answers
+    countUpTickAnswer(answer) {
+      answer.usefulCount += 1;
+      this.answerService.update({
+        _id: answer._id,
+        aDate: answer.aDate,
+        questionId: answer.questionId,
+        aContent: answer.aContent,
+        userId: answer.userId,
+        usefulCount: answer.usefulCount,
+        bestAnswer: answer.bestAnswer,
+        aCodeLink: answer.aCodeLink,
+      })
+    }
+
+
+  //////////////////////////
+
+  /////////////////////Question Section for modal
+
+    public showEditQuestionModal(question) {
+        let modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/editQuestion.html',
+        controller: editModalQuestionController,
+        controllerAs: 'controller',
+        resolve: {
+          question: () => question
+        },
+        size: 'md'
+      });
+    //  modal.closed.then(() => this.questionService.showAllQuestions());
+    }
+////////////////// end of question modal
+    // public listComments(answerId) {
+    //   console.log(answerId)
+    //   this.comments = this.commentService.getAllbyAnswer(answerId);
+    // }
 
     // public addComment(answerID) {
     //   this.newComment.cDate = Date.now();
@@ -104,4 +151,66 @@ namespace mainsos.Controllers {
     //   this.commentService.update(comment);
     // }
   }
+///////////////Answer Modal for editing the answers
+  export class editModalAnswerController {
+    public answers;
+
+    constructor(answer, private answerService, private $uibModalInstance, private $stateParams) {
+      this.answerService.getOne(answer._id).then((foundAnswer) => {
+        this.answers = foundAnswer
+      })
+      }
+
+    public editAnswer() {
+      this.answerService.update({
+        _id: this.answers._id,
+        aDate: this.answers.aDate,
+        questionId: this.answers.questionId,
+        aContent: this.answers.aContent,
+        userId: this.answers.userId,
+        usefulCount: this.answers.usefulCount,
+        bestAnswer: this.answers.bestAnswer,
+        aCodeLink: this.answers.aCodeLink
+      }).then(() => {this.close()});
+
+    }
+
+    public close() {
+      this.$uibModalInstance.close();
+    }
+
+  }
+///////////////////////
+
+///////////////////the question modal for editing the questions
+  export class editModalQuestionController {
+    public questions;
+
+    constructor(question, private $uibModalInstance, private questionService, private $stateParams){
+      this.questionService.getOne($stateParams.id).then((foundQuestion) => {
+        this.questions = foundQuestion
+      })
+    }
+
+    public editQuestion() {
+      this.questionService.update({
+        _id: this.questions._id,
+        qTitle: this.questions.qTitle,
+        qDate:this.questions.qDate,
+        userID: this.questions.userID,
+        lessonID: this.questions.lessonID,
+        clickCount: this.questions.clickCount,
+        qCodeLink: this.questions.qCodeLink
+      }).then(() => {
+      this.questionService.showAllQuestions()
+      }).then(() => {this.close()});
+    }
+
+    public close() {
+      this.$uibModalInstance.close();
+    }
+
+
+  }
+////////////////////////////
 }

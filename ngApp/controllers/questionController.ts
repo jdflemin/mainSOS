@@ -3,6 +3,7 @@ namespace mainsos.Controllers {
   export class QuestionController {
     private lesson;
     private questions;
+    private clickCount = 0;
     public question;
     public newQuestion = {
       qTitle: '',
@@ -14,25 +15,14 @@ namespace mainsos.Controllers {
       qCodeLink: ''
     }
 
-    //private question;             //justins changes he went over with nick.
-    // public newQuestion = {
-    //   qTitle: '',
-    //   qContent: '',
-    //   qDate: Date.now(),
-    //   lessonID: '',
-    //
-    // }
-    // public clickCount = 0;
-    // public userId= '';
-
-    constructor(private lessonServices, private questionService, private $stateParams, private $state) {
+    constructor(private lessonServices, private questionService, private $stateParams, private $state, private $uibModal) {
       console.log($stateParams.id);
-      this.questions = this.lessonServices.getOne($stateParams.id).then((data) => {
+      lessonServices.getOne($stateParams.id).then((data) => {
           this.lesson = data;
           this.listQuestions();
         })
     }
-
+////////////////////Questions Section
     public listQuestions() {
       console.log(this.lesson._id);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
@@ -43,50 +33,60 @@ namespace mainsos.Controllers {
       this.$state.go('answers', {id: questionID});
     }
 
-public addQuestions(questions) {
-       this.questionService.add({
-        lessonID: this.$stateParams.id,
-         qTitle: this.newQuestion.qTitle,
-         qContent: this.newQuestion.qContent,
-         qDate: this.newQuestion.qDate,
-         qCodeLink: this.newQuestion.qCodeLink
-       }).then((data)  => {
-         this.questionService.lessonID = '';
-         this.questionService.qTitle = '';
-         this.questionService.qContent = '';
-         this.questionService.qDate = Date.now();
-         this.questionService.qCodeLink = '';
-         this.questions.push(data);
-       })
-       this.listQuestions();
+    public addQuestions(questions) {
+           this.questionService.add({
+            lessonID: this.$stateParams.id,
+             qTitle: this.newQuestion.qTitle,
+             qContent: this.newQuestion.qContent,
+             qDate: this.newQuestion.qDate,
+             userId: this.newQuestion.userId,
+             clickCount: this.newQuestion.clickCount,
+             qCodeLink: this.newQuestion.qCodeLink
+           }).then((data)  => {
+             this.questionService.lessonID = '';
+             this.questionService.qTitle = '';
+             this.questionService.qContent = '';
+             this.questionService.qDate = Date.now();
+             this.questionService.userId;
+             this.questionService.clickCount;
+             this.questionService.qCodeLink = '';
+             this.questions.push(data);
+           })
+           this.listQuestions();
+         }
+
+     deleteQuestion(id) {
+       this.questionService.delete(id)
+       .then((data) => {
+         this.questions = this.questionService.showAllQuestions();
+       }).catch((err) => console.log(err));
      }
-//
-//     public updateQuestion(question) {
-//       this.questionService.update(question);
-//     }
-//
-  //  public delete(id) {
-  //     this.questionService.delete(id)
-  //       .then((data) => {
-  //         this.questions = this.questionService.getAllByLesson(this.lesson._id);
-  //       });
-  //   }
-//
-//     public questionClickCount(questionId) {
-//       let questionUptick = this.questionService.getOne(questionId);
-//       questionUptick.clickCount++;
-//       this.updateQuestion(questionUptick);
-//     }
-//
-//     // public open() {
-//     //   this.newQuestion = this.$state.go('answers', {id: this.question._id});
-//     // }
-//
-//     // public getQuestionLessonTitle(title) {
-//     //   this.lesson = this.questionService.query({title: this.lesson._title});
-//     // }
+
+
+     deleteQuestionwithAllAnswers(id) {
+
+     }
+////////////////
+
+//////////////upTick Section for questions
+
+    countUpTick(question) {
+      console.log("this is the question clickCount is " + question.clickCount);
+      question.clickCount += 1;
+      this.questionService.update({
+        _id: question._id,
+        qTitle: question.qTitle,
+        qContent: question.qContent,
+        qDate: question.qDate,
+        lessonID: question.lessonID,
+        clickCount: question.clickCount,
+        userId: question.userId,
+        qCodeLink: question.qCodeLink
+      })//.then(() => {this.listQuestions()});
     }
- }
-    //   console.log(questionID);
-    //   this.$state.go('answers', {id: questionID});
-    // }
+
+//////////////////
+
+
+     }
+}

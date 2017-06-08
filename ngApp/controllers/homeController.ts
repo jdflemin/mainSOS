@@ -27,16 +27,44 @@ namespace mainsos.Controllers {
         this.$state.go('lessons', {id: courseId});
       }
 
+      public showEditModalCourse(course) {
+        let modal = this.$uibModal.open({
+          templateUrl: '/ngApp/views/editCourse.html',
+          controller: editModalCourseController,
+          controllerAs: 'controller',
+          resolve: {
+            course: () => course
+          },
+          size: 'md',
+        });
+          modal.closed.then(() => this.courses = this.courseServices.getAll());
+        }
 
+      }
 
+      export class editModalCourseController {
+        public courses;
 
+        constructor(course, private courseServices, private $uibModalInstance) {
+          this.courseServices.getOne(course._id).then((foundCourse) => {
+            this.courses = foundCourse
+          });
+        }
 
+        public editCourse() {
+          this.courseServices.update({
+            _id: this.courses._id,
+            name: this.courses.name,
+            isEnabled: this.courses.isEnabled,
+            icon: this.courses.icon
+          }).then(() => {this.close()});
+        }
 
+        public close() {
+          this.$uibModalInstance.close();
+        }
 
-
-
-
-    }
+      }
 
     export class TestController{
     public weightclasses;

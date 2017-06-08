@@ -9,7 +9,7 @@ namespace mainsos.Controllers{
       courseId: ''
     };
 
-    constructor(private courseServices, private lessonServices, private $stateParams, private $state){
+    constructor(private courseServices, private lessonServices, private $stateParams, private $state, private $uibModal){
       console.log($stateParams.id);
       courseServices.getOne($stateParams.id).then((data) => {
         this.Course = data;
@@ -39,7 +39,45 @@ namespace mainsos.Controllers{
       this.lesson = this.lessonServices.delete(course._id).then(() => this.lessonServices.reShow());
     }
 
+    public showEditLessonModal(lesson){
+      let modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/editLesson.html',
+        controller: editModalLessonController,
+        controllerAs: 'controller',
+        resolve: {
+          lesson: () => lesson
+        },
+        size: 'md',
+      })
+      modal.closed.then(() => {this.listLessons()});
+    }
+
   }
+
+  export class editModalLessonController {
+    public lessons;
+
+    constructor(lesson, private lessonServices, private $uibModalInstance){
+      this.lessonServices.getOne(lesson._id).then((foundLesson) => {
+        this.lessons = foundLesson
+      });
+
+    }
+
+    public editLesson() {
+      this.lessonServices.update({
+        _id: this.lessons._id,
+        courseId: this.lessons.courseId,
+        title: this.lessons.title
+      }).then(() => {this.close()});
+    }
+
+    public close() {
+      this.$uibModalInstance.close();
+    }
+  }
+
+
 }
 
 

@@ -25,6 +25,10 @@ namespace mainsos.Services {
       return this.COURSE_RESOURCE.delete({id: id}).$promise;
     }
 
+    public update(course) {
+      return this.COURSE_RESOURCE.save({id: course._id}, course).$promise;
+    }
+
     public reShow(){
       return this.$window.location.reload();
     }
