@@ -10,33 +10,35 @@
 <div class="row">
   <div class="col-md-9">
     <div class="questionInfo">
-      <h4 class="h4Question">{{controller.question.qTitle}} <i class="fa fa-pencil" ng-click="controller.showEditQuestionModal(question._id)"></i>
-</h4>
+      <h4 class="h4Question">{{controller.question.qTitle}}
+        <i class="fa fa-pencil" ng-click="controller.showEditQuestionModal(question._id)"></i>
+      </h4>
       <hr>
-      <p class="pQuestion"><span>{{controller.question.qContent}}</span></p>
+      <div class="pQuestion"><span>{{controller.question.qContent}}</span></div>
     </div>
     <div class="answers">
-      <ul class="answersUL"  ng-repeat="answer in controller.answers | orderBy:'-usefulCount'">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-1">
-            <h3>
-              <i class="fa fa-sort-asc fa-xl" aria-hidden="true" ng-click="controller.countUpTickAnswer(answer)">
-              </i>
-            </h3>
-        <!--for the upTick to display-->
-            {{answer.usefulCount}}
+      <ul class="answersUL"  ng-repeat="answer in controller.answers">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1">
 
-        <!--end-->
-          </span>
+              <span>
+                <h3><i class="fa fa-sort-asc fa-xl" ng-click="controller.countUpTickAnswer(answer)"></i></h3>
+                {{answer.usefulCount}}
+              </span>
+            </div>
+            <div class="col-sm-22">
+              <li class="question">
+                <span>{{answer.aContent}}</span><br>
+                <span><button type="button" ng-click="controller.CommentsModal(answer._id)">Reply</button></span>
+                <span class="pull-right">{{answer.aDate}}</span><br>
+                <span class="pull-right">
+                <i class="fa fa-eraser" aria-hidden="true" ng-click="controller.delete(question._id)"></i>
+                <i class="fa fa-pencil" aria-hidden="true" ng-click="controller.edit(question)"></i>
+                </span>
+              </li>
+            </div>
         </div>
-        <div>
-        <li class="answerLI">
-          <div>
-            <p class="answer">{{answer.aContent}}</p>
-          </div>
-          <div><button type="button" ng-click="controller.CommentsModal(answer._id)">Reply</button></div>
-        </li>
-      </div>
       </ul>
     </div>
   </div>
