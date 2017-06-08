@@ -10,6 +10,7 @@ namespace mainsos.Services {
     }
 
     public getOne(id) {
+      console.log(id);
       return this.COURSE_RESOURCE.get({id: id}).$promise;
     }
 
@@ -17,8 +18,9 @@ namespace mainsos.Services {
       return this.COURSE_RESOURCE.save(course).$promise;
     }
 
-    public edit(id) {
-      return this.COURSE_RESOURCE.post({id: id}).$promise;
+    public edit(course) {
+      console.log(course);
+      return this.COURSE_RESOURCE.save({id: course._id}, course).$promise;
     }
 
     public delete(id){

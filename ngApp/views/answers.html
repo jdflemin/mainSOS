@@ -14,7 +14,7 @@
       <ul class="answersUL"  ng-repeat="answer in controller.answers">
         <li class="answerLI">
           <p class="answer">{{answer.aContent}}</p>
-          <button type="button" class="replyButton" ng-click="controller.openComments()">Reply</button>
+          <button class="replyButton">Reply</button>
           <button type="button" ng-click="controller.deleteAnswer(answer._id)">Delete</button>
           <div class="discussionContainer">
             <hr>
