@@ -14,7 +14,7 @@
         <i class="fa fa-pencil" ng-click="controller.showEditQuestionModal(question._id)"></i>
       </h4>
       <hr>
-      <h6><div class="pQuestion"><span>{{controller.question.qCodeLink}}</span></div></h6>
+      <h6><div class="pQuestion"><span><a ng-href="{{controller.question.qCodeLink}}" target="_blank">{{controller.question.qCodeLink}}</a></span></div></h6>
       <div class="pQuestion"><span>{{controller.question.qContent}}</span></div>
     </div>
     <div class="answers">
