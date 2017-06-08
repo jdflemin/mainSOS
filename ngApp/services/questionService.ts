@@ -6,7 +6,7 @@ namespace mainsos.Services{
     private SEARCH_RESOURCE;
     private CRUD_QUESTION_RESOURCE;
 
-    constructor(private $resource) {
+    constructor(private $resource, private $window) {
       this.QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/:id');
       this.LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lessons/:id/questions');
       this.SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
@@ -40,6 +40,11 @@ namespace mainsos.Services{
 
     public delete(id) {
       return this.CRUD_QUESTION_RESOURCE.delete({id: id}).$promise;
+    }
+
+    public showAllQuestions() {
+      return this.$window.location.reload();
+
     }
 
 

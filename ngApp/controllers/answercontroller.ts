@@ -22,17 +22,38 @@ namespace mainsos.Controllers {
       likeCount: 0
   }
 
-    constructor(private questionService, private answerService, private commentService, private $stateParams, private $state) {
+    constructor(private questionService, private answerService, private commentService, private $stateParams, private $state, private $uibModal) {
       console.log("Rosa" + $stateParams.id);
       this.answers = this.questionService.getOne($stateParams.id).then((data) => {
           this.question = data;
           this.listAnswers();
       });
     }
-
+//////////Answer Section
     public listAnswers() {
       console.log("questionId" + this.question._id);
       this.answers = this.answerService.getAllbyQuestion(this.question._id);
+    }
+
+    public addAnswer(answers) {
+      this.answerService.add({
+        aDate: Date.now(),
+        questionId: this.$stateParams.id,
+        aContent: this.newAnswer.aContent,
+        userId: this.$stateParams.id,
+        usefulCount: this.newAnswer.usefulCount,
+        bestAnswer: this.newAnswer.bestAnswer,
+        aCodeLink: this.newAnswer.aCodeLink,
+      }).then((data) => {
+        this.answerService.questionId = '';
+        this.answerService.aContent = '';
+        this.answerService.userId = '';
+        this.answerService.userfulCount = '';
+        this.answerService.bestAnswer = '';
+        this.answerService.aCodeLink = '';
+        this.answers.push(data);
+      })
+      this.listAnswers();
     }
 
     public findAnswerComments(answerId) {
@@ -40,119 +61,111 @@ namespace mainsos.Controllers {
       this.$state.go('comments', {id: answerId});
     }
 
-    // public openComments(){
-    //   console.log("clicked")
-    //     $(this).parent("answerLI").find(".discussionContainer").slideToggle(500);
-    // }
-}
-  export class CommentController {
-    private answer
-    private comments;
-    //private comment;
-    public newComment = {
-      cDate: Date.now(),
-      answerId: this.answer,
-      aComment: '',
-      userId: '',
-      likeCount: 0
-    }
-
-    constructor(private answerService, private commentService, private $stateParams){
-      this.answerService.getOne($stateParams.id).then((data) => {
-          this.answer = data;
-          this.listComments();
+    public showEditAnswerModal(answer) {
+      let modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/editAnswer.html',
+        controller: editModalAnswerController,
+        controllerAs: 'controller',
+        resolve: {
+          answer: () => answer
+        },
+        size: 'md'
       });
-
-      // console.log("rosa" + this.question._id);
-      // this.answers = this.answerService.getAllbyQuestion(this.question._id);
+      modal.closed.then(() => {this.listAnswers()});
     }
 
-
-    public listComments() {
-      console.log(this.answer._id)
-      this.comments = this.commentService.getAllbyAnswer(this.answer._id);
+    public showEditQuestionModal(question) {
+        let modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/editQuestion.html',
+        controller: editModalQuestionController,
+        controllerAs: 'controller',
+        resolve: {
+          question: () => question
+        },
+        size: 'md'
+      });
+    //  modal.closed.then(() => this.questionService.showAllQuestions());
     }
 
-    // public addAnswer(answers) {
-    //   this.answerService.add({
-    //     aDate: Date.now(),
-    //     questionId: this.$stateParams.id,
-    //     aContent: this.newAnswer.aContent,
-    //     userId: this.$stateParams.id,
-    //     usefulCount: this.newAnswer.usefulCount,
-    //     bestAnswer: this.newAnswer.bestAnswer,
-    //     aCodeLink: this.newAnswer.aCodeLink,
-    //   }).then((data) => {
-    //     this.answerService.questionId = '';
-    //     this.answerService.aContent = '';
-    //     this.answerService.userId = '';
-    //     this.answerService.userfulCount = '';
-    //     this.answerService.bestAnswer = '';
-    //     this.answerService.aCodeLink = '';
-    //     this.answers.push(data);
-    //   })
-    //   this.listAnswers();
-    // }
-    //
-    // deleteAnswer(id) {
-    //   console.log("deleting 1");
-    //   this.answerService.delete(id)
-    //   .then((data) => {
-    //     this.answers = this.answerService.answerShowAll();
-    //   }).catch((err) => console.log(err));
-    //   console.log("deleting 2");
-    // }
+    ////////////////upTick section for answers
+      countUpTickAnswer(answer) {
+        answer.usefulCount += 1;
+        this.answerService.update({
+          _id: answer._id,
+          aDate: answer.aDate,
+          questionId: answer.questionId,
+          aContent: answer.aContent,
+          userId: answer.userId,
+          usefulCount: answer.usefulCount,
+          bestAnswer: answer.bestAnswer,
+          aCodeLink: answer.aCodeLink,
+        })
+      }
 
-    // public addComment(answerID) {
-    //   this.newComment.cDate = Date.now();
-    //   this.newComment.answerId = answerID;
-    //   this.commentService.add(this.newComment);
-    // }
 
-    // public listComments() {
-    //   console.log("answerId" + this.answer._id);
-    //   this.comments = this.commentService.getAllbyAnswer(this.answer._id);
-    // }
-
- }
+    //////////////////////////
 }
 
-// public addAnswer() {
-//   this.newAnswer.aDate = Date.now();
-//   this.answerService.add(this.newAnswer);
-//   this.listAnswers();
-// }
-//
-// public addComment(answerID) {
-//   this.newComment.cDate = Date.now();
-//   this.newComment.answerId = answerID;
-//   this.commentService.add(this.newComment);
-// }
 
-// public usefulAnswer(answerId) {
-//   let tempAnswer = this.answerService.getOne(answerId);
-//   tempAnswer.usefulCount++;
-//   this.updateAnswer(tempAnswer);
-//   this.listAnswers();
-// }
-//
-// public setBestAnswer(answerID) {
-//   let tempAnswer = this.answerService.getOne(answerID);
-//   tempAnswer.bestAnswer = true;
-//   this.updateAnswer(tempAnswer);
-//   this.listAnswers();
-// }
-//
-// public likeComment(commentID){
-//   let tempComment = this.commentService.getOne(commentID);
-//   tempComment.likeCount++;
-//   this.updateComment(tempComment);
-// }
-//
-// public updateAnswer(answer) {
-//   this.answerService.update(answer);
-// }
-//
-// public updateComment(comment) {
-//   this.commentService.update(comment);
-// }
+///////////////Answer Modal for editing the answers
+  export class editModalAnswerController {
+    public answers;
+
+    constructor(answer, private answerService, private $uibModalInstance, private $stateParams) {
+      this.answerService.getOne(answer._id).then((foundAnswer) => {
+        this.answers = foundAnswer
+      })
+      }
+
+    public editAnswer() {
+      this.answerService.update({
+        _id: this.answers._id,
+        aDate: this.answers.aDate,
+        questionId: this.answers.questionId,
+        aContent: this.answers.aContent,
+        userId: this.answers.userId,
+        usefulCount: this.answers.usefulCount,
+        bestAnswer: this.answers.bestAnswer,
+        aCodeLink: this.answers.aCodeLink
+      }).then(() => {this.close()});
+
+    }
+
+    public close() {
+      this.$uibModalInstance.close();
+    }
+
+  }
+///////////////////////
+
+///////////////////the question modal for editing the questions
+  export class editModalQuestionController {
+    public questions;
+
+    constructor(question, private $uibModalInstance, private questionService, private $stateParams){
+      this.questionService.getOne($stateParams.id).then((foundQuestion) => {
+        this.questions = foundQuestion
+      })
+    }
+
+    public editQuestion() {
+      this.questionService.update({
+        _id: this.questions._id,
+        qTitle: this.questions.qTitle,
+        qContent: this.questions.qContent,
+        qDate:this.questions.qDate,
+        userID: this.questions.userID,
+        lessonID: this.questions.lessonID,
+        clickCount: this.questions.clickCount,
+        qCodeLink: this.questions.qCodeLink
+      }).then(() => {
+      this.questionService.showAllQuestions()
+      }).then(() => {this.close()});
+    }
+
+    public close() {
+      this.$uibModalInstance.close();
+    }
+
+
+  }

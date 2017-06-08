@@ -15,28 +15,33 @@
       <h2 class="lessonTitle text-center">Lesson: {{controller.lesson.title}}</h2>
     </div>
     <div class="questions">
-      <ul class="questionsList" ng-repeat="question in controller.questions" >
+      <ul class="questionsList" ng-repeat="question in controller.questions | orderBy:'-clickCount'" >
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-1">
-            <span ng-click="controller.question.questionClickCount(questionUptick)">
-            <h3><i class="fa fa-sort-asc fa-xl" aria-hidden="true"></i></h3>
-            </span>
-          </div>
-      <div class="col-sm-22">
-        <li class="question">
-          <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
-          <span class="pull-right" ng-click="controller.redirectToAnswers(question._id)">{{question.qDate | date:"MM/dd/yyyy h:mma"}}</span>
-         </li>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1">
+              <h3><i class="fa fa-sort-asc fa-xl" aria-hidden="true" ng-click="controller.countUpTick(question)"></i></h3>
+<!--for the upTick to display--><span>{{question.clickCount}}</span><!--end-->
+            </div>
+          <div class="col-sm-22">
+          <li class="question">
+            <span ng-click="controller.redirectToAnswers(question._id)">{{question.qTitle}}</span>
+            <span class="pull-right">{{question.qDate}}</span>
+          <span>
+          <i class="fa fa-pencil" ng-click="controller.showEditQuestionModal()"></i>
+          <i class="fa fa-trash" ng-click="controller.deleteQuestion(question._id)"></i> delete question
+          </span>
+        </li>
+      </div>
+    </div>
       </ul>
    </div>
   </div>
   <div class="col-md-3">
     <div class="askQuestion">
       <form>
-        <input type="text" class="newQuestionTitle" placeholder="Question Title" ng-model="controller.question.qTitle">
-        <input type="text" class="newQuestionBody" placeholder="code link" rows="1" cols="100">
-        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100" ng-model="controller.question.qContent"></textarea>
+        <input type="text" class="newQuestionTitle" placeholder="Question Title" ng-model="controller.newQuestion.qTitle">
+        <input type="text" class="newQuestionBody" placeholder="code link" rows="1" cols="100" ng-model="controller.newQuestion.qCodeLink">
+        <textarea type="text" class="newQuestionBody" placeholder="Question Body" rows="10" cols="100" ng-model="controller.newQuestion.qContent"></textarea>
         <button type="button" class="questionButton" ng-click="controller.addQuestions()">Ask</button>
       </form>
     </div>
