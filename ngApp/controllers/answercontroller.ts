@@ -40,9 +40,10 @@ namespace mainsos.Controllers {
       this.$state.go('comments', {id: answerId});
     }
 
-    public openComments(){
-        $('.discussionContainer').slideToggle(500)
-    }
+    // public openComments(){
+    //   console.log("clicked")
+    //     $(this).parent("answerLI").find(".discussionContainer").slideToggle(500);
+    // }
 }
   export class CommentController {
     private answer
