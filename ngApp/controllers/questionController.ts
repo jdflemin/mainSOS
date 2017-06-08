@@ -3,8 +3,8 @@ namespace mainsos.Controllers {
   export class QuestionController {
     private lesson;
     private questions;
-    private clickCount = 0;
-    public question;
+    //private clickCount = 0;
+    //public question;
     public newQuestion = {
       qTitle: '',
       qContent: '',
@@ -20,11 +20,12 @@ namespace mainsos.Controllers {
       lessonServices.getOne($stateParams.id).then((data) => {
           this.lesson = data;
           this.listQuestions();
+          console.log(this.questions);
         })
     }
-////////////////////Questions Section
+
     public listQuestions() {
-//      console.log(this.lesson._id);
+      console.log(this.lesson._id);
       this.questions = this.questionService.getAllByLesson(this.lesson._id);
     }
 
@@ -61,12 +62,6 @@ namespace mainsos.Controllers {
        }).catch((err) => console.log(err));
      }
 
-
-     deleteQuestionwithAllAnswers(id) {
-
-     }
-
-////////////////
 
 //////////////upTick Section for questions
 

@@ -5,6 +5,7 @@ namespace mainsos.Controllers {
     private answers;
     private answer;
     private comments;
+    private Modal;
     public newAnswer = {
       aDate: Date.now(),
       questionId: this.question,
@@ -56,10 +57,24 @@ namespace mainsos.Controllers {
       this.listAnswers();
     }
 
-    public findAnswerComments(answerId) {
-      console.log("sendAnswerIdToComment" + answerId);
-      this.$state.go('comments', {id: answerId});
+    public CommentsModal(ID) {
+      console.log("here");
+      this.Modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/commentsModal.html',
+        controller: mainsos.Controllers.CommentsController,
+        controllerAs: 'controller',
+        size: 'lg',
+        resolve: {
+          ID: () => ID
+        }
+      });
+
+      this.Modal.closed.then( () => {
+        this.listAnswers()
+      });
     }
+
+
 
     public showEditAnswerModal(answer) {
       let modal = this.$uibModal.open({
@@ -138,6 +153,7 @@ namespace mainsos.Controllers {
   }
 ///////////////////////
 
+
 ///////////////////the question modal for editing the questions
   export class editModalQuestionController {
     public questions;
@@ -168,4 +184,29 @@ namespace mainsos.Controllers {
     }
 
   }
+
+  export class CommentsController {
+    private answer;
+    private comments;
+
+    constructor(ID, private answerService, private commentService, private $uibModalInstance){
+      console.log(ID);
+        answerService.getOne(ID).then((data) => {
+          this.answer = data;
+          console.log(this.answer);
+          this.listComments();
+        });
+    }
+
+    public listComments() {
+      console.log(this.answer._id);
+      this.comments = this.commentService.getAllbyAnswer(this.answer._id);
+      console.log(this.comments);
+    }
+
+    public ok() {
+    this.$uibModalInstance.close();
+  }
+}
+
 }

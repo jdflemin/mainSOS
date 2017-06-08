@@ -11,7 +11,6 @@ namespace mainsos.Services{
       this.LESSON_QUESTION_RESOURCE = this.$resource('http://localhost:3002/api/v1/questions/lessons/:id/questions');
       this.SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/questions/search/:search');
       this.CRUD_QUESTION_RESOURCE = this.$resource('http://localhost:3003/api/v1/questions/:id');
-
     }
 
     public getAll() {
