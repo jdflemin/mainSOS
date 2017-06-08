@@ -1,0 +1,23 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="Modal-header">
+  <h2>{{controller.answer.aContent}}</h2>
+</div>
+
+<div class="Modal-body">
+  <ul ng-repeat="comment in controller.comments">
+    <li>{{comment.cContent}}</li>
+  </ul>
+</div>
+
+<div class="Modal-footer">
+  <button ng-click="controller.ok()" class="btn btn-primary">Close</button>
+
+</div>

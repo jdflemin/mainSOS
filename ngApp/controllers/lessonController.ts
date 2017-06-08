@@ -9,8 +9,8 @@ namespace mainsos.Controllers{
       courseId: ''
     };
 
-    constructor(private courseServices, private lessonServices, private $stateParams, private $state, private $uibModal){
-      console.log($stateParams.id);
+    constructor(private courseServices, private lessonServices, private $stateParams, private $state, private questionService, private answerService, private commentService, private $uibModal){
+      //console.log($stateParams.id);
       courseServices.getOne($stateParams.id).then((data) => {
         this.Course = data;
         this.listLessons();
@@ -18,12 +18,12 @@ namespace mainsos.Controllers{
     }
 
     public listLessons(){
-      console.log(this.Course);
+      //console.log(this.Course);
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
     public redirectToQuestions(lessonId){
-      console.log(lessonId);
+      //console.log(lessonId);
       this.$state.go('questions', {id: lessonId});
     }
 
@@ -34,9 +34,9 @@ namespace mainsos.Controllers{
       }).then(() => this.lessonServices.reShow());
     }
 
-    public editLesson(id){
-      this.lessonServices.post(id).then(() => this.lessonServices.reShow());
-    }
+    // public editLesson(id){
+    //   this.lessonServices.post(id).then(() => this.lessonServices.reShow());
+    // }
 
     public delete(course){
       this.lesson = this.lessonServices.delete(course._id).then(() => this.lessonServices.reShow());
@@ -53,6 +53,70 @@ namespace mainsos.Controllers{
         size: 'md',
       })
       modal.closed.then(() => {this.listLessons()});
+    }
+
+    //trending Section..................
+
+    private trendComments;
+    private trendAnswers = [];
+    private trendQuestions = [];
+    private referenceDate;
+
+    public getTrendingQuestions(){
+      this.setNeededDate();
+      this.answerService.getAllbyDate().then((data) => {
+        this.trendAnswers = data;
+        this.getCommentsbyDate();
+      })
+
+    }
+
+    public setNeededDate(){
+      this.referenceDate = Date.now();
+      this.referenceDate.setHours(this.referenceDate.getHours() - 24);  //this grab everything with a answers or comment posted in the last 24 hours.
+    }
+
+    public getCommentsbyDate(){
+      this.commentService.getAllbyDate().then((data) => {
+        this.trendComments = data;
+        this.addtoTrendingAnswers();
+        this.addtoTrendingQuestions();
+      })
+    }
+
+    public addtoTrendingAnswers(){
+      for(let i = 0; i < this.trendComments.length; i++){
+        this.answerService.getOne(this.trendComments[i].answerId).then((data) => {
+          let tempAnswer = data;
+          let pushThis = true;
+          for(let j = 0; j < this.trendAnswers.length; j++) {
+            if(this.trendAnswers[j]._id == tempAnswer._id){
+              pushThis = false;
+            }
+          }
+          if(pushThis){
+            this.trendAnswers.push(tempAnswer);
+          }
+        });
+      }
+    }
+
+    public addtoTrendingQuestions(){
+      for(let i = 0; i < this.trendAnswers.length; i++){
+        this.questionService.getOne(this.trendAnswers[i].questionId).then((data) => {
+          let tempQuestion = data;
+          let pushThis = true;
+          for(let j = 0; j < this.trendQuestions.length; j++) {
+            if(this.trendQuestions[j]._id == tempQuestion._id){
+              pushThis = false;
+            }
+          }
+          if(pushThis){
+            this.trendQuestions.push(tempQuestion);
+          }
+        });
+      }
+      console.log('trendQuestions');
     }
 
   }
@@ -82,57 +146,3 @@ namespace mainsos.Controllers{
 
 
 }
-
-
-
-/*
-public lesson;
-public lessons;
-public course;
-
-constructor (private courseService, private  lessonServices, private $state){
-  courseService.getOne($state.params.id).then((data) => {
-    this.course = data;
-  })
-  this.listLessons();
-}
-
-public listLessons(){
-  this.lessons = this.lessonServices.getAllCourseLessons(this.course._id);
-}
-
-public delete(lesson){
-  this.lessonServices.delete(lesson)
-  .then((data)=> {
-    this.lessons = this.lessonServices.listLessons();
-  });
-}
-
-public edit(lesson){
-  this.lessonServices.edit(lesson);
-}
-
-public add(lesson){
-  let newLesson = {courseId:'', title:''};
-  newLesson.courseId= this.lesson.courseId;
-  newLesson.title= this.lesson.title;
-  this.lesson.unshift(newLesson);
-  this.lesson.courseId='';
-  this.lesson.title='';
-  }
-
-  private lesson;
-  private lessons;
-  //private course;
-
-  constructor(private courseServices, private lessonServices, private $stateParams){
-    lessonServices.get($stateParams.id).then((data) => {
-      this.lesson = data;
-      this.listLessons();
-    })
-  }
-
-  public listLessons(){
-    this.lessons = this.lessonServices.getAllCourseLessons(this.lesson._id)
-  }
-  */

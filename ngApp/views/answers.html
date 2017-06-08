@@ -29,24 +29,14 @@
         <!--end-->
           </span>
         </div>
+        <div>
         <li class="answerLI">
-          <p class="answer">{{answer.aContent}}</p>
-          <button type="button" class="replyButton" ng-click="controller.listComments(answer._id)">Reply</button>
-          <i class="fa fa-pencil" ng-click="controller.showEditAnswerModal(answer)"></i>
-          <i class="fa fa-trash" ng-click="controller.deleteAnswer(answer._id)"></i>
-          <div class="discussionContainer">
-            <hr>
-            <h1>testing</h1>
-            <ul class="disUL" ng-repeat="comment in controller.comments">
-              <li class="disLI">
-                <span>{{comment.aComment}}</span>
-                <span>{{comment.cDate}}</span>
-              </li>
-            </ul>
-            <textarea name="name" class="disText" rows="4" cols="50" placeholder="This is for dis"></textarea>
-            <button type="button" class="respondButton" >Respond</button>
+          <div>
+            <p class="answer">{{answer.aContent}}</p>
           </div>
+          <div><button type="button" ng-click="controller.CommentsModal(answer._id)">Reply</button></div>
         </li>
+      </div>
       </ul>
     </div>
   </div>
