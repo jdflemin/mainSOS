@@ -5,12 +5,14 @@ namespace mainsos.Services {
     private QUESTION_ANSWER_RESOURCE;
     private SEARCH_RESOURCE;
     private CRUD_ANSWER_SERVICE;
+    private ANSWER_BYDATE_RESOURCE;
 
     constructor(private $resource, private $window) {
       this.ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/:id');
       this.QUESTION_ANSWER_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/question/:id/answers');
       this.SEARCH_RESOURCE = this.$resource('http://localhost:3001/api/v1/answers/search/:search');
       this.CRUD_ANSWER_SERVICE = this.$resource('http://localhost:3003/api/v1/answers/:id')
+      this.ANSWER_BYDATE_RESOURCE = this.$resource('http://localhost:3002/api/v1/answers/:Date');
     }
 
     public getAll() {
@@ -44,6 +46,10 @@ namespace mainsos.Services {
 
     public answerShowAll() {
       return this.$window.location.reload();
+    }
+
+    public getAllbyDate(sentDate) {
+      return this.ANSWER_BYDATE_RESOURCE.get({Date: sentDate}).$promise;
     }
 
 

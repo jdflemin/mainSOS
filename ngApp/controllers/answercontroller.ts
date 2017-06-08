@@ -167,5 +167,5 @@ namespace mainsos.Controllers {
       this.$uibModalInstance.close();
     }
 
-
   }
+}
