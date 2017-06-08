@@ -56,6 +56,13 @@ namespace mainsos.Controllers {
       })
       this.listAnswers();
     }
+    
+      deleteAnswer(id) {
+      this.answerService.delete(id)
+      .then((data) => {
+      this.answers = this.answerService.answerShowAll();
+      })
+    }
 
     public CommentsModal(ID) {
       console.log("here");
