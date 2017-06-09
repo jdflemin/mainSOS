@@ -15,13 +15,6 @@ namespace mainsos.Controllers {
       bestAnswer: false,
       aCodeLink: '',
     }
-    public newComment = {
-      cDate: Date.now(),
-      answerId: this.answer,
-      cContent: "",
-      userId: "",   //this to be updated when we see what token will be as it will auto populate with who is logged in
-      likeCount: 0
-  }
 
     constructor(private questionService, private answerService, private commentService, private $stateParams, private $state, private $uibModal) {
       console.log("Rosa" + $stateParams.id);
@@ -30,7 +23,7 @@ namespace mainsos.Controllers {
           this.listAnswers();
       });
     }
-//////////Answer Section
+
     public listAnswers() {
       console.log("questionId" + this.question._id);
       this.answers = this.answerService.getAllbyQuestion(this.question._id);
@@ -56,7 +49,7 @@ namespace mainsos.Controllers {
       })
       this.listAnswers();
     }
-    
+
       deleteAnswer(id) {
       this.answerService.delete(id)
       .then((data) => {
@@ -65,7 +58,6 @@ namespace mainsos.Controllers {
     }
 
     public CommentsModal(ID) {
-      console.log("here");
       this.Modal = this.$uibModal.open({
         templateUrl: '/ngApp/views/commentsModal.html',
         controller: mainsos.Controllers.CommentsController,
@@ -80,8 +72,6 @@ namespace mainsos.Controllers {
         this.listAnswers()
       });
     }
-
-
 
     public showEditAnswerModal(answer) {
       let modal = this.$uibModal.open({
@@ -124,8 +114,6 @@ namespace mainsos.Controllers {
         })
       }
 
-
-    //////////////////////////
 }
 
 
@@ -195,25 +183,96 @@ namespace mainsos.Controllers {
   export class CommentsController {
     private answer;
     private comments;
+    public newComment = {
+      cDate: Date.now(),
+      answerId: '',
+      cContent: '',
+      userId: '',   //this to be updated when we see what token will be as it will auto populate with who is logged in
+      likeCount: 0
+    }
 
-    constructor(ID, private answerService, private commentService, private $uibModalInstance){
-      console.log(ID);
-        answerService.getOne(ID).then((data) => {
-          this.answer = data;
-          console.log(this.answer);
-          this.listComments();
-        });
+    constructor(ID, private answerService, private commentService, private $uibModalInstance, private $uibModal){
+      answerService.getOne(ID).then((data) => {
+        this.answer = data;
+        this.listComments();
+      });
     }
 
     public listComments() {
-      console.log(this.answer._id);
       this.comments = this.commentService.getAllbyAnswer(this.answer._id);
-      console.log(this.comments);
+    }
+
+    public addComment(){
+      this.commentService.add({
+        cContent: this.newComment.cContent,
+        cDate: Date.now(),
+        answerId: this.answer._id,
+        userId: this.newComment.userId,
+        likeCount: this.newComment.likeCount
+      }).then(() => {
+        this.listComments();
+        this.newComment.cContent = '';
+      });
+    }
+
+    public deleteComment(ID){
+      this.commentService.delete(ID).then(() => this.listComments());
+    }
+
+    public updateLikeCount(comment){
+      comment++;
+      this.commentService.add({
+        _id: comment._id,
+        cDate: comment.cDate,
+        answerId: comment.answerId,
+        cContent: comment.cContent,
+        userId: comment.userId,
+        likeCount: comment.likeCount
+      }).then(() => this.listComments());
+    }
+
+    public updateComment(comment){
+      let Modal = this.$uibModal.open({
+        templateUrl: '/ngApp/views/updateCommentsModal.html',
+        controller: mainsos.Controllers.updateCommentsController,
+        controllerAs: 'controller',
+        size: 'md',
+        resolve: {
+          comment: () => comment
+        }
+      });
+
+      Modal.closed.then(() => this.listComments());
     }
 
     public ok() {
-    this.$uibModalInstance.close();
+      this.$uibModalInstance.close();
+    }
   }
-}
+
+  export class updateCommentsController{
+      private comment;
+
+      constructor(comment, private commentService, private $uibModalInstance){
+        commentService.getOne(comment._id).then((data) => {
+          this.comment = data;
+        });
+      }
+
+      public updateComment(){
+        this.commentService.update({
+          _id: this.comment._id,
+          cDate: this.comment.cDate,
+          answerId: this.comment.answerId,
+          cContent: this.comment.cContent,
+          userId: this.comment.userId,
+          likeCount: this.comment.likeCount
+        }).then(() => this.$uibModalInstance.close());
+      }
+
+      public closeUpdateModal(){
+        this.$uibModalInstance.close();
+      }
+  }
 
 }
