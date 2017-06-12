@@ -1,9 +1,11 @@
 body {
-  background-image: url("/design.png");
-  background-repeat: repeat;
+  //background-image: url("/design.png");
+  //background-repeat: repeat;
+  background-color: #F3F4F5;
 }
 
 $almond: #42f4f1;
+
 
 @import "header";
 @import "dropdown";

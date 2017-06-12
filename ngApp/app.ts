@@ -37,12 +37,6 @@ namespace mainsos {
                 controller: mainsos.Controllers.AnswerController,
                 controllerAs: 'controller'
             })
-            .state('comments', {
-                url: '/comments/:id',
-                templateUrl: '/ngApp/views/answers.html',
-                controller: mainsos.Controllers.CommentController,
-                controllerAs: 'controller'
-            })
             .state('adminCourse', {
                 url: '/admincourse',
                 templateUrl: '/ngApp/views/admincourse.html',

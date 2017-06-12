@@ -7,6 +7,7 @@
 <div>
   <ul class="homeUL">
     <li class="liste" ng-repeat="course in controller.courses"><div class="container">
+      <i class="fa fa-pencil fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.showEditModalCourse(course)"></i>
       <i class="fa fa-trash fa-2x" aria-hidden="true" id="trashcan" ng-click="controller.delete(course)"></i>
       <label class="switch">
         <input type="checkbox" ng-checked={{course.isEnabled}}>

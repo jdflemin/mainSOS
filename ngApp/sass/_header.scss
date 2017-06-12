@@ -7,6 +7,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
+    opacity: 0.7;
+    border-bottom: 1px solid #E6E8E9;
     background-color: rgba(0,0,0,0.7);
 }
 
@@ -14,14 +16,16 @@
     display: inline-block;
     color: white;
     text-align: center;
-    padding: 12px 16px;
+    padding: 5px 5px;
     text-decoration: none;
+
 }
 
 #topBar .searchButton {
   border: 0px;
   background-color: #797878;
   margin-top: 7px;
+  color: black;
 }
 
 
@@ -72,4 +76,8 @@
 #topBar li:nth-child(6){
   align-items: right;
   width: calc(100%/8);
+}
+
+#topBar .Helpbutton {
+  padding-right: 10px;
 }
