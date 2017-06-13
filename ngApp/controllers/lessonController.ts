@@ -10,20 +10,18 @@ namespace mainsos.Controllers{
     };
 
     constructor(private courseServices, private lessonServices, private $stateParams, private $state, private questionService, private answerService, private commentService, private $uibModal){
-      //console.log($stateParams.id);
       courseServices.getOne($stateParams.id).then((data) => {
         this.Course = data;
         this.listLessons();
-      })
+        this.getTrendingQuestions();
+      });
     }
 
     public listLessons(){
-      //console.log(this.Course);
       this.lessons = this.lessonServices.getAllCourseLessons(this.Course._id);
     }
 
     public redirectToQuestions(lessonId){
-      //console.log(lessonId);
       this.$state.go('questions', {id: lessonId});
     }
 
@@ -51,41 +49,42 @@ namespace mainsos.Controllers{
           lesson: () => lesson
         },
         size: 'md',
-      })
+      });
       modal.closed.then(() => {this.listLessons()});
     }
 
     //trending Section..................
-
     private trendComments;
-    private trendAnswers = [];
+    private trendAnswers;
     private trendQuestions = [];
     private referenceDate;
 
-    public getTrendingQuestions(){
-      this.setNeededDate();
-      this.answerService.getAllbyDate().then((data) => {
-        this.trendAnswers = data;
+    public getTrendingQuestions() {
+      this.setReferenceDate();
+      console.log(this.referenceDate.toJSON());
+      this.answerService.getAllbyDate(this.referenceDate.toJSON()).then((data) => {
+        console.log(data);
+        this.trendAnswers = data || []; //this will set this.trendAnswers to a blank array if there is no data pulled.
         this.getCommentsbyDate();
-      })
-
+      });
     }
 
-    public setNeededDate(){
-      this.referenceDate = Date.now();
+    public setReferenceDate() {
+      this.referenceDate = new Date();
       this.referenceDate.setHours(this.referenceDate.getHours() - 24);  //this grab everything with a answers or comment posted in the last 24 hours.
     }
 
-    public getCommentsbyDate(){
-      this.commentService.getAllbyDate().then((data) => {
+    public getCommentsbyDate() {
+      this.commentService.getAllbyDate(this.referenceDate.toJSON()).then((data) => {
+        console.log(data);
         this.trendComments = data;
         this.addtoTrendingAnswers();
-        this.addtoTrendingQuestions();
-      })
+      });
     }
 
-    public addtoTrendingAnswers(){
+    public addtoTrendingAnswers() {
       for(let i = 0; i < this.trendComments.length; i++){
+        console.log(this.trendComments[i].answerId + " 5")
         this.answerService.getOne(this.trendComments[i].answerId).then((data) => {
           let tempAnswer = data;
           let pushThis = true;
@@ -99,9 +98,10 @@ namespace mainsos.Controllers{
           }
         });
       }
+      this.addtoTrendingQuestions();
     }
 
-    public addtoTrendingQuestions(){
+    public addtoTrendingQuestions() {
       for(let i = 0; i < this.trendAnswers.length; i++){
         this.questionService.getOne(this.trendAnswers[i].questionId).then((data) => {
           let tempQuestion = data;
@@ -118,6 +118,11 @@ namespace mainsos.Controllers{
       }
       console.log('trendQuestions');
     }
+
+    public redirectToAnswers(questionId) {
+      this.$state.go('answers', {id: questionId});
+    }
+    //end trending section.......
 
   }
 
