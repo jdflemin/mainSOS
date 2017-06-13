@@ -8,7 +8,7 @@ namespace mainsos.Controllers {
     public newQuestion = {
       qTitle: '',
       qContent: '',
-      qDate: Date.now(),
+      qDate: new Date(),
       lessonID: this.lesson,
       clickCount: 0,
       userId: '',
@@ -46,7 +46,7 @@ namespace mainsos.Controllers {
              this.questionService.lessonID = '';
              this.questionService.qTitle = '';
              this.questionService.qContent = '';
-             this.questionService.qDate = Date.now();
+             this.questionService.qDate = new Date();
              this.questionService.userId;
              this.questionService.clickCount;
              this.questionService.qCodeLink = '';
@@ -86,5 +86,6 @@ namespace mainsos.Controllers {
     public delete(ID) {
       this.questionService.delete(ID).then(() => this.listQuestions());
     }
+    
 }
 }

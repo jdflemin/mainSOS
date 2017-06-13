@@ -45,9 +45,8 @@
   <div class="col-md-3">
     <div class="theLessons">
       <h3 class="h3Lessons">Course Lessons</h3>
-        <ul class="aLessonsUL">
-          <li class="aLessonLI">Lesson 1</li>
-          <li class="aLessonLI">Lesson 2</li>
+        <ul ng-repeat="sidelesson in controller.sideLessons">
+          <li ng-click="controller.redirectToQuestions(sidelesson._id)">{{sidelesson.title}}</li>
         </ul>
     </div>
   </div>
